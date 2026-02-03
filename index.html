@@ -1,55 +1,75 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio | Nama Kamu</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achmad Wirra | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <h1>Nama Kamu</h1>
-        <p>Web Developer | UI/UX | Mahasiswa</p>
-    </header>
+<!-- HEADER / HERO -->
+<header class="hero">
+    <img src="assets/profile.jpg" alt="Foto Profil" class="profile">
+    <h1>Achmad Wira</h1>
+    <p class="subtitle">Frontend Web Developer</p>
+    <a href="#projects" class="btn">Lihat Project</a>
+</header>
 
-    <section id="about">
-        <h2>Tentang Saya</h2>
-        <p>
-            Saya adalah web developer yang tertarik pada frontend development,
-            HTML, CSS, dan JavaScript.
-        </p>
-    </section>
+<!-- ABOUT -->
+<section class="card">
+    <h2>Tentang Saya</h2>
+    <p>
+        Saya adalah frontend web developer yang fokus membuat website
+        yang responsif, bersih, dan mudah digunakan.
+        Terbiasa menggunakan HTML, CSS, dan JavaScript.
+    </p>
+</section>
 
-    <section id="projects">
-        <h2>Project</h2>
+<!-- SKILLS -->
+<section class="card">
+    <h2>Skill</h2>
+    <div class="skills">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+        <span>Git & GitHub</span>
+        <span>Responsive Design</span>
+    </div>
+</section>
 
-        <div class="project">
-            <h3>Project 1</h3>
-            <p>Deskripsi singkat project.</p>
-            <a href="https://github.com/username/project1" target="_blank">
-                Lihat di GitHub
-            </a>
-        </div>
+<!-- PROJECTS -->
+<section class="card" id="projects">
+    <h2>Project</h2>
 
-        <div class="project">
-            <h3>Project 2</h3>
-            <p>Deskripsi singkat project.</p>
-            <a href="https://github.com/username/project2" target="_blank">
-                Lihat di GitHub
-            </a>
-        </div>
-    </section>
+    <div class="project">
+        <h3>Landing Page</h3>
+        <p>Website landing page responsif menggunakan HTML dan CSS.</p>
+        <a href="https://github.com/achmadwirra/nama-repo" target="_blank">GitHub</a>
+    </div>
 
-    <section id="contact">
-        <h2>Kontak</h2>
-        <p>Email: emailkamu@gmail.com</p>
-        <p>GitHub: <a href="https://github.com/username">github.com/username</a></p>
-    </section>
+    <div class="project">
+        <h3>To-Do List</h3>
+        <p>Aplikasi sederhana menggunakan JavaScript.</p>
+        <a href="https://github.com/achmadwirra/nama-repo" target="_blank">GitHub</a>
+    </div>
+</section>
 
-    <footer>
-        <p>© 2026 Nama Kamu</p>
-    </footer>
+<!-- CONTACT -->
+<section class="card">
+    <h2>Kontak</h2>
+    <p>Email: achmadwirra@gmail.com</p>
+    <p>
+        GitHub:
+        <a href="https://github.com/achmadwirra" target="_blank">
+            github.com/achmadwirra
+        </a>
+    </p>
+</section>
+
+<footer>
+    <p>© 2026 Achmad Wirra</p>
+</footer>
 
 </body>
 </html>
