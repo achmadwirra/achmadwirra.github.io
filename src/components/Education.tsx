@@ -39,15 +39,14 @@ export default function Education() {
               </div>
               <div>
                 <h3 className="text-lg font-bold mb-1">
-                  Bachelor of Information Technology
+                  S1 Teknik Informatika
                 </h3>
-                <p className="text-sm text-[var(--accent)] mb-1">University</p>
+                <p className="text-sm text-[var(--accent)] mb-1">Universitas Islam Kalimantan Muhammad Arsyad Al Banjari Banjarmasin</p>
                 <p className="text-xs uppercase tracking-wider opacity-50 mb-3">
                   2020 — 2024
                 </p>
                 <p className="text-sm opacity-60 leading-relaxed">
-                  Focused on software engineering, web development, and database
-                  systems.
+                  Focused on software engineering, web development, database systems, and network administration.
                 </p>
               </div>
             </div>

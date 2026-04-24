@@ -6,28 +6,20 @@ import { Briefcase } from "lucide-react";
 
 const experiences = [
   {
-    role: "Full Stack Developer",
-    company: "Freelance",
+    role: "Freelance Web Developer",
+    company: "Self-employed",
     period: "2024 - Present",
     description:
-      "Building modern web applications for clients using Next.js, TypeScript, and cloud technologies. Delivered 5+ production projects including SaaS dashboards, e-commerce platforms, and content management systems.",
+      "Building modern web applications for clients using Next.js, TypeScript, and cloud technologies. Projects include SaaS analytics dashboards, blog platforms, and business websites deployed on Vercel with PostgreSQL databases.",
     gradient: "from-purple-500 to-cyan-500",
   },
   {
-    role: "Web Developer",
-    company: "Self-employed",
-    period: "2023 - 2024",
+    role: "IT & Web Development Intern (PKL)",
+    company: "Dinas Pariwisata",
+    period: "2023",
     description:
-      "Developed and maintained multiple web applications. Focused on React ecosystem, REST API design, and database management. Collaborated with clients to deliver tailored solutions.",
+      "Assisted in developing and maintaining the department's web presence. Gained hands-on experience with web development workflows, content management, and IT infrastructure support in a government environment.",
     gradient: "from-cyan-500 to-blue-500",
-  },
-  {
-    role: "IT Support & Development",
-    company: "Internship",
-    period: "2022 - 2023",
-    description:
-      "Assisted in maintaining internal tools and web applications. Gained hands-on experience with version control, agile workflows, and production deployments.",
-    gradient: "from-blue-500 to-indigo-500",
   },
 ];
 
