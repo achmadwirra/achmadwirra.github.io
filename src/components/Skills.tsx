@@ -60,9 +60,9 @@ const skillCategories: { title: string; emoji: string; skills: Skill[] }[] = [
       { name: "Git", level: 90, label: "Expert" },
       { name: "GitHub", level: 88, label: "Advanced" },
       { name: "Vercel", level: 85, label: "Advanced" },
-      { name: "Docker", level: 70, label: "Intermediate" },
-      { name: "CI/CD", level: 68, label: "Intermediate" },
-      { name: "Linux", level: 72, label: "Intermediate" },
+      { name: "Docker", level: 75, label: "Advanced" },
+      { name: "CI/CD", level: 72, label: "Intermediate" },
+      { name: "Linux / VPS", level: 82, label: "Advanced" },
     ],
   },
   {
@@ -75,6 +75,18 @@ const skillCategories: { title: string; emoji: string; skills: Skill[] }[] = [
       { name: "Trading & Automation Bots", level: 85, label: "Advanced" },
       { name: "Smart Contracts (Solidity)", level: 65, label: "Intermediate" },
       { name: "Node Infrastructure", level: 80, label: "Advanced" },
+    ],
+  },
+  {
+    title: "AI & Cloud",
+    emoji: "🧠",
+    skills: [
+      { name: "AI/LLM Integration", level: 78, label: "Advanced" },
+      { name: "Prompt Engineering", level: 82, label: "Advanced" },
+      { name: "AWS (EC2, RDP, VPS)", level: 75, label: "Advanced" },
+      { name: "Cloud Infrastructure", level: 72, label: "Intermediate" },
+      { name: "AI Model Evaluation", level: 76, label: "Advanced" },
+      { name: "Automation & Scripting", level: 85, label: "Advanced" },
     ],
   },
 ];
