@@ -19,7 +19,7 @@ const projects = [
     tags: ["TypeScript", "Next.js", "Prisma", "NextAuth"],
     category: "TypeScript",
     github: "https://github.com/achmadwirra/blog-platform",
-    live: "#",
+    live: "https://blog-platform-mu-neon.vercel.app",
     gradient: "from-blue-500 to-cyan-500",
   },
   {
