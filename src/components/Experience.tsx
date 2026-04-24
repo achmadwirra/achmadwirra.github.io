@@ -6,12 +6,20 @@ import { Briefcase } from "lucide-react";
 
 const experiences = [
   {
-    role: "Freelance Web Developer",
+    role: "Freelance Full Stack Developer",
     company: "Self-employed",
     period: "2018 - Present",
     description:
       "Building modern web applications for clients using Next.js, TypeScript, and cloud technologies. Projects include SaaS analytics dashboards, blog platforms, e-commerce sites, and business websites. Experienced in full project lifecycle from requirements to deployment on Vercel and cloud platforms.",
     gradient: "from-purple-500 to-cyan-500",
+  },
+  {
+    role: "Web3 & Blockchain Developer",
+    company: "Independent",
+    period: "2019 - Present",
+    description:
+      "Active in the crypto ecosystem since 2019. Built and operated validator nodes on Cosmos-based networks. Developed trading bots, automation scripts, and on-chain tools. Experienced with EVM chains, node infrastructure, and DeFi protocols.",
+    gradient: "from-cyan-500 to-blue-500",
   },
 ];
 

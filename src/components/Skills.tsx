@@ -66,12 +66,15 @@ const skillCategories: { title: string; emoji: string; skills: Skill[] }[] = [
     ],
   },
   {
-    title: "Currently Learning",
-    emoji: "🚀",
+    title: "Web3 & Blockchain",
+    emoji: "⛓️",
     skills: [
-      { name: "AI/ML Integration", level: 45, label: "Beginner" },
-      { name: "Web3/Blockchain", level: 50, label: "Beginner" },
-      { name: "Cloud Architecture (AWS)", level: 40, label: "Beginner" },
+      { name: "Cosmos SDK / Validator Nodes", level: 82, label: "Advanced" },
+      { name: "EVM Chains (Ethereum, Base, BSC)", level: 80, label: "Advanced" },
+      { name: "DeFi Protocols", level: 78, label: "Advanced" },
+      { name: "Trading & Automation Bots", level: 85, label: "Advanced" },
+      { name: "Smart Contracts (Solidity)", level: 65, label: "Intermediate" },
+      { name: "Node Infrastructure", level: 80, label: "Advanced" },
     ],
   },
 ];

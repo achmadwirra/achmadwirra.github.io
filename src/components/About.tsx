@@ -9,7 +9,7 @@ const highlights = [
   { icon: Code2, title: "Clean Code", desc: "TypeScript-first, maintainable & scalable" },
   { icon: Palette, title: "UI/UX Design", desc: "Creating beautiful user experiences" },
   { icon: Server, title: "Full Stack", desc: "Frontend to backend, end-to-end" },
-  { icon: Zap, title: "Web3 & AI", desc: "Exploring blockchain & AI integrations" },
+  { icon: Zap, title: "Web3 & Blockchain", desc: "6+ years in crypto, validators & bots" },
 ];
 
 export default function About() {
