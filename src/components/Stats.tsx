@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { FolderGit2, Calendar, Code2, Globe } from "lucide-react";
+import { FolderGit2, Calendar, Code2, Trophy } from "lucide-react";
 
 function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -35,10 +35,10 @@ function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
 }
 
 const stats = [
-  { icon: FolderGit2, value: 38, suffix: "+", label: "GitHub Repos" },
-  { icon: Calendar, value: 8, suffix: "+", label: "Years Coding" },
-  { icon: Code2, value: 6, suffix: "+", label: "Languages" },
-  { icon: Globe, value: 10, suffix: "+", label: "Projects Shipped" },
+  { icon: FolderGit2, value: 8, suffix: "+", label: "Projects Completed" },
+  { icon: Calendar, value: 3, suffix: "+", label: "Years Experience" },
+  { icon: Code2, value: 10, suffix: "+", label: "Technologies" },
+  { icon: Trophy, value: 100, suffix: "%", label: "Client Satisfaction" },
 ];
 
 export default function Stats() {

@@ -12,7 +12,17 @@ function GithubIcon({ size = 14 }: { size?: number }) {
   );
 }
 
-const projects = [
+interface Project {
+  title: string;
+  desc: string;
+  tags: string[];
+  category: string;
+  github: string;
+  live: string;
+  gradient: string;
+}
+
+const featuredProjects: Project[] = [
   {
     title: "SaaS Dashboard Analytics",
     desc: "Full-stack analytics dashboard with revenue charts, user management, traffic analytics, reports, role-based auth, and real-time data visualization.",
@@ -31,73 +41,53 @@ const projects = [
     live: "https://blog-platform-mu-neon.vercel.app",
     gradient: "from-blue-500 to-cyan-500",
   },
+];
+
+interface OtherProject {
+  title: string;
+  github: string;
+  tags: string[];
+}
+
+const otherProjects: OtherProject[] = [
   {
     title: "Fullstack E-Commerce",
-    desc: "Complete e-commerce platform with product management, shopping cart, checkout flow, and payment integration using Stripe.",
-    tags: ["TypeScript", "Next.js", "Stripe", "Prisma"],
-    category: "TypeScript",
     github: "https://github.com/achmadwirra/fullstack-ecommerce",
-    live: "#",
-    gradient: "from-purple-500 to-pink-500",
+    tags: ["TypeScript", "Next.js", "Stripe", "Prisma"],
   },
   {
     title: "AI Chatbot Assistant",
-    desc: "Intelligent chatbot application powered by AI with natural language processing and contextual conversation handling.",
-    tags: ["TypeScript", "AI", "Next.js", "OpenAI"],
-    category: "TypeScript",
     github: "https://github.com/achmadwirra/ai-chatbot-assistant",
-    live: "#",
-    gradient: "from-cyan-500 to-blue-500",
+    tags: ["TypeScript", "AI", "Next.js", "OpenAI"],
   },
   {
     title: "TaskFlow",
-    desc: "Task management application with intuitive workflow, drag-and-drop interface, and real-time collaboration features.",
-    tags: ["JavaScript", "React", "Node.js", "MongoDB"],
-    category: "JavaScript",
     github: "https://github.com/achmadwirra/taskflow",
-    live: "#",
-    gradient: "from-orange-500 to-red-500",
+    tags: ["JavaScript", "React", "Node.js", "MongoDB"],
   },
   {
     title: "Auth Secure",
-    desc: "Secure authentication system with JWT, OAuth, role-based access control, and best security practices.",
-    tags: ["TypeScript", "Node.js", "JWT", "OAuth"],
-    category: "TypeScript",
     github: "https://github.com/achmadwirra/auth-secure",
-    live: "#",
-    gradient: "from-green-500 to-emerald-500",
+    tags: ["TypeScript", "Node.js", "JWT", "OAuth"],
   },
   {
     title: "Mini Trello",
-    desc: "Kanban-style project management board with drag-and-drop cards, lists, and real-time updates.",
-    tags: ["JavaScript", "C#", ".NET", "React"],
-    category: "JavaScript",
     github: "https://github.com/achmadwirra/mini-trello",
-    live: "#",
-    gradient: "from-violet-500 to-purple-500",
+    tags: ["JavaScript", "C#", ".NET", "React"],
   },
   {
     title: "Sustainability Tracker UMKM",
-    desc: "Platform to track and monitor sustainability metrics for small and medium enterprises (UMKM) in Indonesia.",
-    tags: ["TypeScript", "Next.js", "Dashboard", "Analytics"],
-    category: "TypeScript",
     github: "https://github.com/achmadwirra/sustainability-tracker-umkm",
-    live: "#",
-    gradient: "from-yellow-500 to-orange-500",
+    tags: ["TypeScript", "Next.js", "Dashboard"],
   },
 ];
-
-const filters = ["All", "TypeScript", "JavaScript"];
 
 export default function Projects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [activeFilter, setActiveFilter] = useState("All");
+  const [showAll, setShowAll] = useState(false);
 
-  const filtered =
-    activeFilter === "All"
-      ? projects
-      : projects.filter((p) => p.category === activeFilter);
+  const visibleOther = showAll ? otherProjects : otherProjects.slice(0, 3);
 
   return (
     <section id="projects" className="py-24 px-6" ref={ref}>
@@ -116,38 +106,17 @@ export default function Projects() {
           </h2>
         </motion.div>
 
-        {/* Filter buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex justify-center gap-3 mb-10"
-        >
-          {filters.map((filter) => (
-            <button
-              key={filter}
-              onClick={() => setActiveFilter(filter)}
-              className={`px-4 py-2 rounded-full text-sm transition-all duration-300 cursor-pointer ${
-                activeFilter === filter
-                  ? "bg-gradient-to-r from-purple-500 to-cyan-500 text-white shadow-lg shadow-purple-500/25"
-                  : "glass opacity-60 hover:opacity-100"
-              }`}
-            >
-              {filter}
-            </button>
-          ))}
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Featured Projects */}
+        <div className="grid md:grid-cols-2 gap-6 mb-16">
           <AnimatePresence mode="popLayout">
-            {filtered.map((project, i) => (
+            {featuredProjects.map((project, i) => (
               <motion.div
                 key={project.title}
                 layout
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3, delay: i * 0.05 }}
+                transition={{ duration: 0.3, delay: i * 0.1 }}
                 className="glass group hover:glow transition-all duration-300 overflow-hidden"
               >
                 <div
@@ -180,6 +149,7 @@ export default function Projects() {
                     </a>
                     <a
                       href={project.live}
+                      target="_blank"
                       className="flex items-center gap-1 text-xs opacity-60 hover:opacity-100 hover:text-[var(--accent)] transition-all"
                     >
                       <ExternalLink size={14} /> Live Demo
@@ -190,6 +160,61 @@ export default function Projects() {
             ))}
           </AnimatePresence>
         </div>
+
+        {/* Other Projects */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <h3 className="text-xl font-bold mb-6 text-center">
+            Other <span className="gradient-text">Projects</span>
+          </h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <AnimatePresence>
+              {visibleOther.map((project, i) => (
+                <motion.a
+                  key={project.title}
+                  href={project.github}
+                  target="_blank"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3, delay: i * 0.05 }}
+                  className="glass p-4 flex items-center justify-between gap-3 group hover:glow transition-all duration-300"
+                >
+                  <div className="min-w-0">
+                    <h4 className="text-sm font-semibold group-hover:text-[var(--accent)] transition-colors truncate">
+                      {project.title}
+                    </h4>
+                    <div className="flex flex-wrap gap-1 mt-1">
+                      {project.tags.slice(0, 2).map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-[10px] px-1.5 py-0.5 rounded-full bg-[var(--accent)]/10 text-[var(--accent)]"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <GithubIcon size={16} />
+                </motion.a>
+              ))}
+            </AnimatePresence>
+          </div>
+
+          {otherProjects.length > 3 && (
+            <div className="text-center mt-6">
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className="text-sm px-4 py-2 rounded-full glass opacity-60 hover:opacity-100 hover:glow transition-all duration-300 cursor-pointer"
+              >
+                {showAll ? "Show Less" : `Show All (${otherProjects.length})`}
+              </button>
+            </div>
+          )}
+        </motion.div>
       </div>
     </section>
   );

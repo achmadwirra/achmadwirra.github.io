@@ -3,35 +3,75 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
-const skillCategories = [
+type SkillLevel = "Expert" | "Advanced" | "Intermediate" | "Beginner";
+
+interface Skill {
+  name: string;
+  level: number;
+  label: SkillLevel;
+}
+
+const levelColors: Record<SkillLevel, string> = {
+  Expert: "from-purple-500 to-cyan-500",
+  Advanced: "from-blue-500 to-cyan-500",
+  Intermediate: "from-cyan-500 to-teal-500",
+  Beginner: "from-teal-500 to-green-500",
+};
+
+const levelBadgeColors: Record<SkillLevel, string> = {
+  Expert: "bg-purple-500/20 text-purple-400",
+  Advanced: "bg-blue-500/20 text-blue-400",
+  Intermediate: "bg-cyan-500/20 text-cyan-400",
+  Beginner: "bg-teal-500/20 text-teal-400",
+};
+
+const skillCategories: { title: string; emoji: string; skills: Skill[] }[] = [
   {
     title: "Frontend",
+    emoji: "🎨",
     skills: [
-      { name: "TypeScript", level: 92 },
-      { name: "React / Next.js", level: 90 },
-      { name: "Tailwind CSS", level: 88 },
-      { name: "JavaScript", level: 90 },
-      { name: "HTML / CSS", level: 95 },
+      { name: "React", level: 90, label: "Expert" },
+      { name: "Next.js", level: 90, label: "Expert" },
+      { name: "TypeScript", level: 92, label: "Expert" },
+      { name: "JavaScript", level: 90, label: "Expert" },
+      { name: "Tailwind CSS", level: 88, label: "Advanced" },
+      { name: "Framer Motion", level: 80, label: "Advanced" },
+      { name: "HTML5", level: 95, label: "Expert" },
+      { name: "CSS3", level: 92, label: "Expert" },
     ],
   },
   {
     title: "Backend",
+    emoji: "⚙️",
     skills: [
-      { name: "Node.js", level: 85 },
-      { name: "C# / .NET", level: 78 },
-      { name: "Python", level: 75 },
-      { name: "REST API", level: 88 },
-      { name: "PostgreSQL / MongoDB", level: 80 },
+      { name: "Node.js", level: 85, label: "Advanced" },
+      { name: "Express", level: 82, label: "Advanced" },
+      { name: "REST API", level: 88, label: "Advanced" },
+      { name: "Prisma", level: 80, label: "Advanced" },
+      { name: "PostgreSQL", level: 78, label: "Advanced" },
+      { name: "MongoDB", level: 78, label: "Advanced" },
+      { name: "SQLite", level: 75, label: "Intermediate" },
     ],
   },
   {
-    title: "Tools & Others",
+    title: "DevOps & Tools",
+    emoji: "🛠️",
     skills: [
-      { name: "Git / GitHub", level: 90 },
-      { name: "Solidity / Web3", level: 65 },
-      { name: "Docker", level: 70 },
-      { name: "Figma", level: 72 },
-      { name: "CI/CD", level: 68 },
+      { name: "Git", level: 90, label: "Expert" },
+      { name: "GitHub", level: 88, label: "Advanced" },
+      { name: "Vercel", level: 85, label: "Advanced" },
+      { name: "Docker", level: 70, label: "Intermediate" },
+      { name: "CI/CD", level: 68, label: "Intermediate" },
+      { name: "Linux", level: 72, label: "Intermediate" },
+    ],
+  },
+  {
+    title: "Currently Learning",
+    emoji: "🚀",
+    skills: [
+      { name: "AI/ML Integration", level: 45, label: "Beginner" },
+      { name: "Web3/Blockchain", level: 50, label: "Beginner" },
+      { name: "Cloud Architecture (AWS)", level: 40, label: "Beginner" },
     ],
   },
 ];
@@ -57,7 +97,7 @@ export default function Skills() {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8">
           {skillCategories.map((category, ci) => (
             <motion.div
               key={category.title}
@@ -66,28 +106,38 @@ export default function Skills() {
               transition={{ duration: 0.5, delay: ci * 0.15 }}
               className="glass p-6"
             >
-              <h3 className="text-lg font-bold mb-6 text-[var(--accent)]">
-                {category.title}
+              <h3 className="text-lg font-bold mb-6 text-[var(--accent)] flex items-center gap-2">
+                <span>{category.emoji}</span> {category.title}
               </h3>
               <div className="space-y-4">
                 {category.skills.map((skill, si) => (
                   <div key={skill.name}>
-                    <div className="flex justify-between text-sm mb-1">
-                      <span>{skill.name}</span>
-                      <span className="opacity-50">{skill.level}%</span>
+                    <div className="flex items-center justify-between text-sm mb-1.5">
+                      <span className="font-medium">{skill.name}</span>
+                      <span
+                        className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${
+                          levelBadgeColors[skill.label]
+                        }`}
+                      >
+                        {skill.label}
+                      </span>
                     </div>
                     <div className="h-2 rounded-full bg-white/5 overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={
-                          isInView ? { width: `${skill.level}%` } : { width: 0 }
+                          isInView
+                            ? { width: `${skill.level}%` }
+                            : { width: 0 }
                         }
                         transition={{
                           duration: 1,
-                          delay: ci * 0.15 + si * 0.1,
+                          delay: ci * 0.15 + si * 0.08,
                           ease: "easeOut",
                         }}
-                        className="h-full rounded-full bg-gradient-to-r from-purple-500 to-cyan-500"
+                        className={`h-full rounded-full bg-gradient-to-r ${
+                          levelColors[skill.label]
+                        }`}
                       />
                     </div>
                   </div>

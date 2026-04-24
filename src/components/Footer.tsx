@@ -35,28 +35,41 @@ const socials = [
 export default function Footer() {
   return (
     <footer className="py-8 px-6 border-t border-white/5">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-sm opacity-50">
-          © {new Date().getFullYear()} Achmad Wira. All rights reserved.
-        </p>
-
-        <div className="flex gap-4">
-          {socials.map((social) => (
-            <a
-              key={social.label}
-              href={social.href}
-              target="_blank"
-              aria-label={social.label}
-              className="p-2 glass rounded-full hover:glow transition-all duration-300 opacity-60 hover:opacity-100"
-            >
-              <social.icon size={16} />
-            </a>
-          ))}
+      <div className="max-w-6xl mx-auto">
+        {/* Available for hire badge */}
+        <div className="flex justify-center mb-6">
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full glass text-sm">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500" />
+            </span>
+            <span className="opacity-80">Open to opportunities</span>
+          </div>
         </div>
 
-        <p className="text-sm opacity-50 flex items-center gap-1">
-          Built with <Heart size={12} className="text-red-500" /> & Next.js
-        </p>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-sm opacity-50">
+            © {new Date().getFullYear()} Achmad Wira. All rights reserved.
+          </p>
+
+          <div className="flex gap-4">
+            {socials.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                aria-label={social.label}
+                className="p-2 glass rounded-full hover:glow transition-all duration-300 opacity-60 hover:opacity-100"
+              >
+                <social.icon size={16} />
+              </a>
+            ))}
+          </div>
+
+          <p className="text-sm opacity-50 flex items-center gap-1">
+            Built with <Heart size={12} className="text-red-500" /> & Next.js
+          </p>
+        </div>
       </div>
     </footer>
   );

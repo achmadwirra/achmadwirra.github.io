@@ -2,17 +2,46 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Send, Mail, User, MessageSquare } from "lucide-react";
+import { Send, Mail, User, MessageSquare, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+
+type FormStatus = "idle" | "loading" | "success" | "error";
 
 export default function Contact() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setStatus("loading");
+    setErrorMsg("");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch("https://formspree.io/f/xpwzgkjr", {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+
+      if (res.ok) {
+        setStatus("success");
+        form.reset();
+        setTimeout(() => setStatus("idle"), 5000);
+      } else {
+        const data = await res.json();
+        setErrorMsg(data?.errors?.[0]?.message || "Something went wrong. Please try again.");
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 5000);
+      }
+    } catch {
+      setErrorMsg("Network error. Please check your connection and try again.");
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 5000);
+    }
   };
 
   return (
@@ -49,9 +78,11 @@ export default function Contact() {
             />
             <input
               type="text"
+              name="name"
               placeholder="Your Name"
               required
-              className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-[var(--accent)] focus:outline-none transition-colors"
+              disabled={status === "loading"}
+              className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-[var(--accent)] focus:outline-none transition-colors disabled:opacity-50"
             />
           </div>
 
@@ -62,9 +93,11 @@ export default function Contact() {
             />
             <input
               type="email"
+              name="email"
               placeholder="Your Email"
               required
-              className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-[var(--accent)] focus:outline-none transition-colors"
+              disabled={status === "loading"}
+              className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-[var(--accent)] focus:outline-none transition-colors disabled:opacity-50"
             />
           </div>
 
@@ -74,19 +107,51 @@ export default function Contact() {
               className="absolute left-4 top-4 opacity-40"
             />
             <textarea
+              name="message"
               placeholder="Your Message"
               rows={5}
               required
-              className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-[var(--accent)] focus:outline-none transition-colors resize-none"
+              disabled={status === "loading"}
+              className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-[var(--accent)] focus:outline-none transition-colors resize-none disabled:opacity-50"
             />
           </div>
 
+          {/* Status messages */}
+          {status === "success" && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex items-center gap-2 text-green-400 text-sm p-3 rounded-xl bg-green-500/10 border border-green-500/20"
+            >
+              <CheckCircle size={16} />
+              Message sent successfully! I&apos;ll get back to you soon.
+            </motion.div>
+          )}
+
+          {status === "error" && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex items-center gap-2 text-red-400 text-sm p-3 rounded-xl bg-red-500/10 border border-red-500/20"
+            >
+              <AlertCircle size={16} />
+              {errorMsg}
+            </motion.div>
+          )}
+
           <button
             type="submit"
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-medium flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
+            disabled={status === "loading"}
+            className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-medium flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
           >
-            {submitted ? (
-              "Message Sent! ✓"
+            {status === "loading" ? (
+              <>
+                <Loader2 size={16} className="animate-spin" /> Sending...
+              </>
+            ) : status === "success" ? (
+              <>
+                <CheckCircle size={16} /> Message Sent!
+              </>
             ) : (
               <>
                 Send Message <Send size={16} />
