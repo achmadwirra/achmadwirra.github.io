@@ -43,7 +43,7 @@ export default function Education() {
                 </h3>
                 <p className="text-sm text-[var(--accent)] mb-1">Universitas Islam Kalimantan Muhammad Arsyad Al Banjari Banjarmasin</p>
                 <p className="text-xs uppercase tracking-wider opacity-50 mb-3">
-                  2020 — 2024
+                  2019 — 2023
                 </p>
                 <p className="text-sm opacity-60 leading-relaxed">
                   Focused on software engineering, web development, database systems, and network administration.

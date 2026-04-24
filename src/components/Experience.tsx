@@ -8,18 +8,10 @@ const experiences = [
   {
     role: "Freelance Web Developer",
     company: "Self-employed",
-    period: "2024 - Present",
+    period: "2018 - Present",
     description:
-      "Building modern web applications for clients using Next.js, TypeScript, and cloud technologies. Projects include SaaS analytics dashboards, blog platforms, and business websites deployed on Vercel with PostgreSQL databases.",
+      "Building modern web applications for clients using Next.js, TypeScript, and cloud technologies. Projects include SaaS analytics dashboards, blog platforms, e-commerce sites, and business websites. Experienced in full project lifecycle from requirements to deployment on Vercel and cloud platforms.",
     gradient: "from-purple-500 to-cyan-500",
-  },
-  {
-    role: "IT & Web Development Intern (PKL)",
-    company: "Dinas Pariwisata",
-    period: "2023",
-    description:
-      "Assisted in developing and maintaining the department's web presence. Gained hands-on experience with web development workflows, content management, and IT infrastructure support in a government environment.",
-    gradient: "from-cyan-500 to-blue-500",
   },
 ];
 

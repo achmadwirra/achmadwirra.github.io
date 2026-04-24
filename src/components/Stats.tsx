@@ -36,7 +36,7 @@ function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
 
 const stats = [
   { icon: FolderGit2, value: 8, suffix: "+", label: "Projects Completed" },
-  { icon: Calendar, value: 3, suffix: "+", label: "Years Experience" },
+  { icon: Calendar, value: 7, suffix: "+", label: "Years Experience" },
   { icon: Code2, value: 10, suffix: "+", label: "Technologies" },
   { icon: Trophy, value: 100, suffix: "%", label: "Client Satisfaction" },
 ];
