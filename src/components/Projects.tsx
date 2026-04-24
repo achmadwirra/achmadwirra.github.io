@@ -14,6 +14,15 @@ function GithubIcon({ size = 14 }: { size?: number }) {
 
 const projects = [
   {
+    title: "Blog Platform",
+    desc: "Full-stack blog platform with CRUD posts, Markdown editor with live preview, comments, categories, tags, search, auth, reading progress, TOC, and dark mode.",
+    tags: ["TypeScript", "Next.js", "Prisma", "NextAuth"],
+    category: "TypeScript",
+    github: "https://github.com/achmadwirra/blog-platform",
+    live: "#",
+    gradient: "from-blue-500 to-cyan-500",
+  },
+  {
     title: "Fullstack E-Commerce",
     desc: "Complete e-commerce platform with product management, shopping cart, checkout flow, and payment integration using Stripe.",
     tags: ["TypeScript", "Next.js", "Stripe", "Prisma"],
