@@ -44,13 +44,14 @@ const skillCategories: { title: string; emoji: string; skills: Skill[] }[] = [
     title: "Backend",
     emoji: "⚙️",
     skills: [
-      { name: "Node.js", level: 85, label: "Advanced" },
+      { name: "Node.js", level: 88, label: "Advanced" },
+      { name: "Python", level: 82, label: "Advanced" },
       { name: "Express", level: 82, label: "Advanced" },
       { name: "REST API", level: 88, label: "Advanced" },
       { name: "Prisma", level: 80, label: "Advanced" },
       { name: "PostgreSQL", level: 78, label: "Advanced" },
       { name: "MongoDB", level: 78, label: "Advanced" },
-      { name: "SQLite", level: 75, label: "Intermediate" },
+      { name: "Firebase / Supabase", level: 72, label: "Intermediate" },
     ],
   },
   {
