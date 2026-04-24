@@ -14,6 +14,15 @@ function GithubIcon({ size = 14 }: { size?: number }) {
 
 const projects = [
   {
+    title: "SaaS Dashboard Analytics",
+    desc: "Full-stack analytics dashboard with revenue charts, user management, traffic analytics, reports, role-based auth, and real-time data visualization.",
+    tags: ["TypeScript", "Next.js", "Prisma", "Recharts"],
+    category: "TypeScript",
+    github: "https://github.com/achmadwirra/saas-dashboard",
+    live: "https://saas-dashboard-cyan.vercel.app",
+    gradient: "from-indigo-500 to-purple-500",
+  },
+  {
     title: "Blog Platform",
     desc: "Full-stack blog platform with CRUD posts, Markdown editor with live preview, comments, categories, tags, search, auth, reading progress, TOC, and dark mode.",
     tags: ["TypeScript", "Next.js", "Prisma", "NextAuth"],
