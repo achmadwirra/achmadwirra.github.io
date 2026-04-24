@@ -24,6 +24,15 @@ interface Project {
 
 const featuredProjects: Project[] = [
   {
+    title: "Wir Chat",
+    desc: "Real-time chat application with Google auth, chat rooms, typing indicators, image sharing, message pinning, and online status — powered by Firebase.",
+    tags: ["TypeScript", "Next.js", "Firebase", "Tailwind"],
+    category: "TypeScript",
+    github: "https://github.com/achmadwirra/wir-chat",
+    live: "https://wir-chat.vercel.app",
+    gradient: "from-green-500 to-emerald-500",
+  },
+  {
     title: "SaaS Dashboard Analytics",
     desc: "Full-stack analytics dashboard with revenue charts, user management, traffic analytics, reports, role-based auth, and real-time data visualization.",
     tags: ["TypeScript", "Next.js", "Prisma", "Recharts"],
