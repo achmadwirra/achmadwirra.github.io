@@ -24,6 +24,15 @@ interface Project {
 
 const featuredProjects: Project[] = [
   {
+    title: "Wir Store",
+    desc: "Full-stack e-commerce with product catalog, cart (Zustand), checkout, order tracking, admin dashboard, reviews, wishlist, and search.",
+    tags: ["TypeScript", "Next.js", "Prisma", "Zustand"],
+    category: "TypeScript",
+    github: "https://github.com/achmadwirra/wir-store",
+    live: "https://wir-store.vercel.app",
+    gradient: "from-amber-500 to-orange-500",
+  },
+  {
     title: "Wir AI",
     desc: "AI Multi-Tool Hub with chat (streaming), image analyzer, code generator, text summarizer, and translator — powered by OpenRouter with 5+ AI models.",
     tags: ["TypeScript", "Next.js", "OpenRouter", "AI SDK"],
