@@ -24,6 +24,15 @@ interface Project {
 
 const featuredProjects: Project[] = [
   {
+    title: "Wir AI",
+    desc: "AI Multi-Tool Hub with chat (streaming), image analyzer, code generator, text summarizer, and translator — powered by OpenRouter with 5+ AI models.",
+    tags: ["TypeScript", "Next.js", "OpenRouter", "AI SDK"],
+    category: "TypeScript",
+    github: "https://github.com/achmadwirra/wir-ai",
+    live: "https://wir-ai.vercel.app",
+    gradient: "from-purple-500 to-pink-500",
+  },
+  {
     title: "Wir Chat",
     desc: "Real-time chat application with Google auth, chat rooms, typing indicators, image sharing, message pinning, and online status — powered by Firebase.",
     tags: ["TypeScript", "Next.js", "Firebase", "Tailwind"],
