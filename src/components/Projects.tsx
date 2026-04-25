@@ -24,6 +24,15 @@ interface Project {
 
 const featuredProjects: Project[] = [
   {
+    title: "Wir Forms",
+    desc: "Drag & drop survey/form builder with 12 field types, response analytics (charts), QR sharing, CSV export, and public form filling.",
+    tags: ["TypeScript", "Next.js", "dnd-kit", "Recharts"],
+    category: "TypeScript",
+    github: "https://github.com/achmadwirra/wir-forms",
+    live: "https://wir-forms.vercel.app",
+    gradient: "from-violet-500 to-indigo-500",
+  },
+  {
     title: "Wir Store",
     desc: "Full-stack e-commerce with product catalog, cart (Zustand), checkout, order tracking, admin dashboard, reviews, wishlist, and search.",
     tags: ["TypeScript", "Next.js", "Prisma", "Zustand"],
