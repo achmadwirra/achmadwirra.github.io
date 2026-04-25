@@ -7,6 +7,7 @@ import Education from "@/components/Education";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import Services from "@/components/Services";
+import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -29,6 +30,7 @@ export default function Home() {
       <Projects />
       <Skills />
       <Services />
+      <Testimonials />
       <Contact />
       <Footer />
       <BackToTop />

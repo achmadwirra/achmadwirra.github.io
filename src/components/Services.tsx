@@ -9,43 +9,57 @@ import {
   Database,
   Rocket,
   Smartphone,
+  Sparkles,
+  Link,
 } from "lucide-react";
 
 const services = [
   {
     icon: Globe,
     title: "Web Application Development",
-    desc: "End-to-end development of modern web apps with React/Next.js",
+    desc: "End-to-end development of modern web apps with React/Next.js, from MVP to production",
     gradient: "from-purple-500 to-indigo-500",
+  },
+  {
+    icon: Sparkles,
+    title: "AI Integration",
+    desc: "Integrate AI/LLM capabilities into your apps — chatbots, content generation, image analysis",
+    gradient: "from-pink-500 to-purple-500",
+  },
+  {
+    icon: Link,
+    title: "Web3 & Blockchain",
+    desc: "Smart contracts, DeFi tools, validator nodes, trading bots, and on-chain automation",
+    gradient: "from-yellow-500 to-orange-500",
   },
   {
     icon: BarChart3,
     title: "Dashboard & Analytics",
-    desc: "Data visualization, admin panels, and business intelligence tools",
+    desc: "Data visualization, admin panels, and business intelligence tools with real-time charts",
     gradient: "from-cyan-500 to-blue-500",
   },
   {
     icon: Shield,
     title: "Authentication & Security",
-    desc: "Secure auth systems with OAuth, JWT, and role-based access",
+    desc: "Secure auth systems with OAuth, JWT, Firebase Auth, and role-based access control",
     gradient: "from-green-500 to-emerald-500",
   },
   {
     icon: Database,
-    title: "Database Design",
-    desc: "Schema design, migrations, and optimization with PostgreSQL/MongoDB",
+    title: "Database & API Design",
+    desc: "Schema design, REST APIs, real-time databases with PostgreSQL, Firebase, and Prisma",
     gradient: "from-orange-500 to-amber-500",
   },
   {
     icon: Rocket,
     title: "Deployment & DevOps",
-    desc: "CI/CD pipelines, cloud deployment, and performance optimization",
-    gradient: "from-pink-500 to-rose-500",
+    desc: "CI/CD pipelines, Vercel/AWS deployment, Docker, and performance optimization",
+    gradient: "from-red-500 to-rose-500",
   },
   {
     icon: Smartphone,
     title: "Responsive Design",
-    desc: "Mobile-first, cross-browser compatible interfaces",
+    desc: "Mobile-first, cross-browser compatible interfaces with smooth animations",
     gradient: "from-violet-500 to-purple-500",
   },
 ];

@@ -6,8 +6,9 @@ import { ArrowDown, Download } from "lucide-react";
 
 const roles = [
   "Full Stack Developer",
+  "AI Integration Specialist",
+  "Web3 & Blockchain Developer",
   "TypeScript Enthusiast",
-  "Web3 Explorer",
   "Problem Solver",
 ];
 
