@@ -31,18 +31,27 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Achmad Wira | Full Stack Developer — React, Next.js, TypeScript",
     description:
-      "Full Stack Developer from Indonesia building modern web applications with React, Next.js, TypeScript, and Node.js. 3+ years experience. Available for hire.",
+      "Full Stack Developer from Indonesia with 7+ years experience. Building modern web apps with React, Next.js, TypeScript, Python, Firebase & Web3. Available for hire.",
     url: "https://achmadwirra.github.io",
     siteName: "Achmad Wira Portfolio",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "https://achmadwirra.github.io/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Achmad Wira - Full Stack Developer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Achmad Wira | Full Stack Developer",
     description:
-      "Full Stack Developer from Indonesia building modern web apps with React, Next.js & TypeScript. Available for hire.",
+      "Full Stack Developer from Indonesia with 7+ years experience. React, Next.js, TypeScript, Python, Web3. Available for hire.",
     creator: "@achwir_",
+    images: ["https://achmadwirra.github.io/og-image.png"],
   },
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
