@@ -8,26 +8,26 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "achmadwira@proton.me",
-    href: "mailto:achmadwira@proton.me",
+    value: "achwirairdrop@gmail.com",
+    href: "mailto:achwirairdrop@gmail.com",
   },
   {
     icon: Phone,
     label: "Phone",
-    value: "+62 xxx xxxx xxxx",
-    href: "tel:+62",
+    value: "+62 897 878 6000",
+    href: "tel:+628978786000",
   },
   {
     icon: MapPin,
     label: "Location",
-    value: "Banjarmasin, Indonesia",
+    value: "Kalimantan Selatan, Indonesia",
     href: "#",
   },
   {
     icon: MessageCircle,
     label: "WhatsApp",
     value: "Chat on WhatsApp",
-    href: "https://wa.me/62",
+    href: "https://wa.me/628978786000",
   },
 ];
 
