@@ -1,164 +1,167 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { Send, Mail, User, MessageSquare, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Mail, Phone, MapPin, MessageCircle, Send } from "lucide-react";
 
-type FormStatus = "idle" | "loading" | "success" | "error";
+const contactInfo = [
+  {
+    icon: Mail,
+    label: "Email",
+    value: "achmadwira@proton.me",
+    href: "mailto:achmadwira@proton.me",
+  },
+  {
+    icon: Phone,
+    label: "Phone",
+    value: "+62 xxx xxxx xxxx",
+    href: "tel:+62",
+  },
+  {
+    icon: MapPin,
+    label: "Location",
+    value: "Banjarmasin, Indonesia",
+    href: "#",
+  },
+  {
+    icon: MessageCircle,
+    label: "WhatsApp",
+    value: "Chat on WhatsApp",
+    href: "https://wa.me/62",
+  },
+];
 
 export default function Contact() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [status, setStatus] = useState<FormStatus>("idle");
-  const [errorMsg, setErrorMsg] = useState("");
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setStatus("loading");
-    setErrorMsg("");
-
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-
-    try {
-      const res = await fetch("https://formspree.io/f/mgordpgr", {
-        method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
-      });
-
-      if (res.ok) {
-        setStatus("success");
-        form.reset();
-        setTimeout(() => setStatus("idle"), 5000);
-      } else {
-        const data = await res.json();
-        setErrorMsg(data?.errors?.[0]?.message || "Something went wrong. Please try again.");
-        setStatus("error");
-        setTimeout(() => setStatus("idle"), 5000);
-      }
-    } catch {
-      setErrorMsg("Network error. Please check your connection and try again.");
-      setStatus("error");
-      setTimeout(() => setStatus("idle"), 5000);
-    }
-  };
+  const [submitted, setSubmitted] = useState(false);
 
   return (
-    <section id="contact" className="py-24 px-6" ref={ref}>
-      <div className="max-w-2xl mx-auto">
+    <section id="contact" className="py-20 bg-[#0d1117]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
         >
-          <p className="text-sm uppercase tracking-widest text-[var(--accent)] mb-2">
-            Get In Touch
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold">
-            Let&apos;s <span className="gradient-text">Connect</span>
+          <h2 className="text-3xl font-bold text-[#f8fafc] mb-3">
+            Contact Me
           </h2>
-          <p className="mt-4 opacity-60">
-            Have a project in mind? Let&apos;s build something amazing together.
+          <p className="text-[#94a3b8]">
+            Let&apos;s work together on your next project
           </p>
         </motion.div>
 
-        <motion.form
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          onSubmit={handleSubmit}
-          className="glass p-8 space-y-6"
-        >
-          <div className="relative">
-            <User
-              size={18}
-              className="absolute left-4 top-1/2 -translate-y-1/2 opacity-40"
-            />
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              required
-              disabled={status === "loading"}
-              className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-[var(--accent)] focus:outline-none transition-colors disabled:opacity-50"
-            />
-          </div>
-
-          <div className="relative">
-            <Mail
-              size={18}
-              className="absolute left-4 top-1/2 -translate-y-1/2 opacity-40"
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Your Email"
-              required
-              disabled={status === "loading"}
-              className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-[var(--accent)] focus:outline-none transition-colors disabled:opacity-50"
-            />
-          </div>
-
-          <div className="relative">
-            <MessageSquare
-              size={18}
-              className="absolute left-4 top-4 opacity-40"
-            />
-            <textarea
-              name="message"
-              placeholder="Your Message"
-              rows={5}
-              required
-              disabled={status === "loading"}
-              className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-[var(--accent)] focus:outline-none transition-colors resize-none disabled:opacity-50"
-            />
-          </div>
-
-          {/* Status messages */}
-          {status === "success" && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex items-center gap-2 text-green-400 text-sm p-3 rounded-xl bg-green-500/10 border border-green-500/20"
-            >
-              <CheckCircle size={16} />
-              Message sent successfully! I&apos;ll get back to you soon.
-            </motion.div>
-          )}
-
-          {status === "error" && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex items-center gap-2 text-red-400 text-sm p-3 rounded-xl bg-red-500/10 border border-red-500/20"
-            >
-              <AlertCircle size={16} />
-              {errorMsg}
-            </motion.div>
-          )}
-
-          <button
-            type="submit"
-            disabled={status === "loading"}
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-medium flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
+        <div className="grid lg:grid-cols-2 gap-10">
+          {/* Left - Contact Info */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="space-y-4"
           >
-            {status === "loading" ? (
-              <>
-                <Loader2 size={16} className="animate-spin" /> Sending...
-              </>
-            ) : status === "success" ? (
-              <>
-                <CheckCircle size={16} /> Message Sent!
-              </>
+            {contactInfo.map((item, index) => (
+              <motion.a
+                key={item.label}
+                href={item.href}
+                target={item.href.startsWith("http") ? "_blank" : undefined}
+                rel={
+                  item.href.startsWith("http")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="dark-card p-5 flex items-center gap-4 block"
+              >
+                <div className="w-12 h-12 rounded-lg bg-[#06b6d4]/10 flex items-center justify-center shrink-0">
+                  <item.icon className="text-[#06b6d4]" size={22} />
+                </div>
+                <div>
+                  <p className="text-[#94a3b8] text-xs uppercase tracking-wider">
+                    {item.label}
+                  </p>
+                  <p className="text-[#f8fafc] font-medium">{item.value}</p>
+                </div>
+              </motion.a>
+            ))}
+          </motion.div>
+
+          {/* Right - Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            {submitted ? (
+              <div className="dark-card p-8 text-center h-full flex flex-col items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-[#06b6d4]/10 flex items-center justify-center mx-auto mb-4">
+                  <Send className="text-[#06b6d4]" size={28} />
+                </div>
+                <h3 className="text-xl font-semibold text-[#f8fafc] mb-2">
+                  Message Sent!
+                </h3>
+                <p className="text-[#94a3b8]">
+                  Thank you for reaching out. I&apos;ll get back to you soon.
+                </p>
+              </div>
             ) : (
-              <>
-                Send Message <Send size={16} />
-              </>
+              <form
+                action="https://formspree.io/f/mgordpgr"
+                method="POST"
+                onSubmit={() => setSubmitted(true)}
+                className="dark-card p-6 space-y-4"
+              >
+                <div>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Your Name"
+                    required
+                    className="w-full bg-[#0a0f1a] border border-[#1e293b] rounded-lg px-4 py-3 text-[#f8fafc] placeholder-[#64748b] focus:outline-none focus:border-[#06b6d4] transition-colors text-sm"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Your Email"
+                    required
+                    className="w-full bg-[#0a0f1a] border border-[#1e293b] rounded-lg px-4 py-3 text-[#f8fafc] placeholder-[#64748b] focus:outline-none focus:border-[#06b6d4] transition-colors text-sm"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    name="subject"
+                    placeholder="Subject"
+                    required
+                    className="w-full bg-[#0a0f1a] border border-[#1e293b] rounded-lg px-4 py-3 text-[#f8fafc] placeholder-[#64748b] focus:outline-none focus:border-[#06b6d4] transition-colors text-sm"
+                  />
+                </div>
+                <div>
+                  <textarea
+                    name="message"
+                    placeholder="Your Message"
+                    rows={5}
+                    required
+                    className="w-full bg-[#0a0f1a] border border-[#1e293b] rounded-lg px-4 py-3 text-[#f8fafc] placeholder-[#64748b] focus:outline-none focus:border-[#06b6d4] transition-colors text-sm resize-none"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-[#06b6d4] hover:bg-[#22d3ee] text-[#0a0f1a] py-3 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
+                >
+                  Send Message <Send size={16} />
+                </button>
+              </form>
             )}
-          </button>
-        </motion.form>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

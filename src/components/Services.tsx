@@ -1,114 +1,99 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import {
-  Globe,
-  BarChart3,
-  Shield,
-  Database,
-  Rocket,
-  Smartphone,
-  Sparkles,
+  Monitor,
+  Server,
+  Brain,
   Link,
+  Database,
+  Cloud,
+  ArrowRight,
 } from "lucide-react";
 
 const services = [
   {
-    icon: Globe,
-    title: "Web Application Development",
-    desc: "End-to-end development of modern web apps with React/Next.js, from MVP to production",
-    gradient: "from-purple-500 to-indigo-500",
+    icon: Monitor,
+    title: "Frontend Development",
+    description:
+      "Building responsive, performant user interfaces with React, Next.js, and Tailwind CSS. Pixel-perfect designs with smooth animations.",
   },
   {
-    icon: Sparkles,
+    icon: Server,
+    title: "Backend Development",
+    description:
+      "Scalable server-side solutions with Node.js, Python, and RESTful/GraphQL APIs. Clean architecture and robust error handling.",
+  },
+  {
+    icon: Brain,
     title: "AI Integration",
-    desc: "Integrate AI/LLM capabilities into your apps — chatbots, content generation, image analysis",
-    gradient: "from-pink-500 to-purple-500",
+    description:
+      "Integrating LLMs, OpenRouter, and prompt engineering into applications. Building intelligent tools and AI-powered workflows.",
   },
   {
     icon: Link,
     title: "Web3 & Blockchain",
-    desc: "Smart contracts, DeFi tools, validator nodes, trading bots, and on-chain automation",
-    gradient: "from-yellow-500 to-orange-500",
-  },
-  {
-    icon: BarChart3,
-    title: "Dashboard & Analytics",
-    desc: "Data visualization, admin panels, and business intelligence tools with real-time charts",
-    gradient: "from-cyan-500 to-blue-500",
-  },
-  {
-    icon: Shield,
-    title: "Authentication & Security",
-    desc: "Secure auth systems with OAuth, JWT, Firebase Auth, and role-based access control",
-    gradient: "from-green-500 to-emerald-500",
+    description:
+      "Validator operations, trading bots, DeFi protocols, and smart contract interactions. Deep experience in the crypto ecosystem.",
   },
   {
     icon: Database,
-    title: "Database & API Design",
-    desc: "Schema design, REST APIs, real-time databases with PostgreSQL, Firebase, and Prisma",
-    gradient: "from-orange-500 to-amber-500",
+    title: "Database Design",
+    description:
+      "Efficient database architecture with PostgreSQL, Firebase, and Prisma. Optimized queries and data modeling for scale.",
   },
   {
-    icon: Rocket,
-    title: "Deployment & DevOps",
-    desc: "CI/CD pipelines, Vercel/AWS deployment, Docker, and performance optimization",
-    gradient: "from-red-500 to-rose-500",
-  },
-  {
-    icon: Smartphone,
-    title: "Responsive Design",
-    desc: "Mobile-first, cross-browser compatible interfaces with smooth animations",
-    gradient: "from-violet-500 to-purple-500",
+    icon: Cloud,
+    title: "Cloud & DevOps",
+    description:
+      "Deployment and infrastructure on AWS, Vercel, and Docker. Linux server management and CI/CD pipelines.",
   },
 ];
 
 export default function Services() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section id="services" className="py-24 px-6" ref={ref}>
-      <div className="max-w-6xl mx-auto">
+    <section id="services" className="py-20 bg-[#0d1117]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
         >
-          <p className="text-sm uppercase tracking-widest text-[var(--accent)] mb-2">
-            Services
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold">
-            What I Can <span className="gradient-text">Do For You</span>
+          <h2 className="text-3xl font-bold text-[#f8fafc] mb-3">
+            My Services
           </h2>
-          <p className="mt-4 opacity-60 max-w-xl mx-auto">
-            From concept to deployment, I deliver complete solutions tailored to
-            your needs.
+          <p className="text-[#94a3b8] max-w-2xl mx-auto">
+            Comprehensive development services to bring your ideas to life
           </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, i) => (
+          {services.map((service, index) => (
             <motion.div
               key={service.title}
               initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="glass p-6 group hover:glow transition-all duration-300"
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="dark-card p-6 group"
             >
-              <div
-                className={`w-12 h-12 rounded-xl bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
-              >
-                <service.icon size={24} className="text-white" />
+              <div className="w-12 h-12 rounded-lg bg-[#06b6d4]/10 flex items-center justify-center mb-4 group-hover:bg-[#06b6d4]/20 transition-colors">
+                <service.icon className="text-[#06b6d4]" size={24} />
               </div>
-              <h3 className="text-lg font-bold mb-2 group-hover:text-[var(--accent)] transition-colors">
+              <h3 className="text-lg font-semibold text-[#f8fafc] mb-3">
                 {service.title}
               </h3>
-              <p className="text-sm opacity-60 leading-relaxed">
-                {service.desc}
+              <p className="text-[#94a3b8] text-sm leading-relaxed mb-4">
+                {service.description}
               </p>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-1 text-[#06b6d4] text-sm font-medium hover:gap-2 transition-all"
+              >
+                Read More <ArrowRight size={14} />
+              </a>
             </motion.div>
           ))}
         </div>

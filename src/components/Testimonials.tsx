@@ -1,83 +1,136 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { Quote } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
 const testimonials = [
   {
     name: "Rizky Pratama",
     role: "Startup Founder",
-    text: "Wira built our entire SaaS dashboard from scratch. Clean code, fast delivery, and the UI exceeded our expectations. Highly recommended!",
-    avatar: "RP",
-    gradient: "from-purple-500 to-cyan-500",
+    rating: 5,
+    text: "Wira built our entire SaaS dashboard from scratch. His attention to detail and ability to translate complex requirements into clean, functional code is remarkable. The project was delivered on time and exceeded our expectations.",
   },
   {
     name: "Sarah Chen",
     role: "Product Manager",
-    text: "Working with Wira was a great experience. He understood our requirements quickly and delivered a production-ready blog platform in record time.",
-    avatar: "SC",
-    gradient: "from-cyan-500 to-blue-500",
+    rating: 5,
+    text: "Working with Wira was a great experience. He brought creative solutions to our technical challenges and was always responsive to feedback. His full-stack expertise made the development process smooth and efficient.",
   },
   {
     name: "Ahmad Fauzi",
     role: "Crypto Project Lead",
-    text: "Wira's Web3 expertise is impressive. He set up our validator nodes and built custom trading bots that have been running flawlessly for months.",
-    avatar: "AF",
-    gradient: "from-orange-500 to-red-500",
+    rating: 5,
+    text: "Wira's Web3 expertise is impressive. He developed our DeFi dashboard and trading bot with deep understanding of blockchain mechanics. His code is clean, well-documented, and production-ready.",
   },
 ];
 
 export default function Testimonials() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [current, setCurrent] = useState(0);
+
+  const next = () => setCurrent((prev) => (prev + 1) % testimonials.length);
+  const prev = () =>
+    setCurrent(
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+    );
 
   return (
-    <section id="testimonials" className="py-24 px-6" ref={ref}>
-      <div className="max-w-6xl mx-auto">
+    <section className="py-20 bg-[#0a0f1a]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
         >
-          <p className="text-sm uppercase tracking-widest text-[var(--accent)] mb-2">
-            Testimonials
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold">
-            What <span className="gradient-text">Clients Say</span>
+          <h2 className="text-3xl font-bold text-[#f8fafc] mb-3">
+            My Clients Says
           </h2>
+          <p className="text-[#94a3b8]">What people think about my work</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {testimonials.map((t, i) => (
-            <motion.div
-              key={t.name}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="glass p-6 relative"
-            >
-              <Quote
-                size={32}
-                className="text-[var(--accent)] opacity-20 absolute top-4 right-4"
-              />
-              <p className="text-sm opacity-70 leading-relaxed mb-6 italic">
-                &ldquo;{t.text}&rdquo;
-              </p>
-              <div className="flex items-center gap-3">
-                <div
-                  className={`w-10 h-10 rounded-full bg-gradient-to-br ${t.gradient} flex items-center justify-center text-white text-sm font-bold`}
-                >
-                  {t.avatar}
+        <div className="max-w-3xl mx-auto">
+          <div className="relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={current}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.3 }}
+                className="dark-card p-8 text-center"
+              >
+                <Quote className="text-[#06b6d4]/30 mx-auto mb-4" size={40} />
+
+                <p className="text-[#94a3b8] text-lg leading-relaxed mb-6 italic">
+                  &ldquo;{testimonials[current].text}&rdquo;
+                </p>
+
+                {/* Stars */}
+                <div className="flex justify-center gap-1 mb-4">
+                  {Array.from({ length: testimonials[current].rating }).map(
+                    (_, i) => (
+                      <Star
+                        key={i}
+                        className="text-[#06b6d4] fill-[#06b6d4]"
+                        size={18}
+                      />
+                    )
+                  )}
                 </div>
-                <div>
-                  <p className="text-sm font-semibold">{t.name}</p>
-                  <p className="text-xs opacity-50">{t.role}</p>
+
+                {/* Avatar */}
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#06b6d4] to-[#22d3ee] flex items-center justify-center mx-auto mb-3">
+                  <span className="text-[#0a0f1a] font-bold text-lg">
+                    {testimonials[current].name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </span>
                 </div>
+
+                <h4 className="text-[#f8fafc] font-semibold">
+                  {testimonials[current].name}
+                </h4>
+                <p className="text-[#06b6d4] text-sm">
+                  {testimonials[current].role}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Navigation */}
+            <div className="flex justify-center items-center gap-4 mt-6">
+              <button
+                onClick={prev}
+                className="w-10 h-10 rounded-full border border-[#1e293b] flex items-center justify-center text-[#94a3b8] hover:text-[#06b6d4] hover:border-[#06b6d4] transition-colors"
+                aria-label="Previous testimonial"
+              >
+                <ChevronLeft size={18} />
+              </button>
+
+              <div className="flex gap-2">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrent(index)}
+                    className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                      index === current ? "bg-[#06b6d4]" : "bg-[#1e293b]"
+                    }`}
+                    aria-label={`Go to testimonial ${index + 1}`}
+                  />
+                ))}
               </div>
-            </motion.div>
-          ))}
+
+              <button
+                onClick={next}
+                className="w-10 h-10 rounded-full border border-[#1e293b] flex items-center justify-center text-[#94a3b8] hover:text-[#06b6d4] hover:border-[#06b6d4] transition-colors"
+                aria-label="Next testimonial"
+              >
+                <ChevronRight size={18} />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

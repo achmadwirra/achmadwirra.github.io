@@ -2,111 +2,50 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
 export const metadata: Metadata = {
-  title: "Achmad Wira | Full Stack Developer — React, Next.js, TypeScript",
+  title: "Achmad Wira | Full Stack Developer",
   description:
-    "Achmad Wira is a Full Stack Developer from Indonesia specializing in React, Next.js, TypeScript, Node.js, and modern web technologies. Available for freelance projects and full-time opportunities.",
+    "Full Stack Developer specializing in TypeScript, React/Next.js, Python, Web3, and AI integration. 7+ years of experience building modern web applications.",
   keywords: [
-    "Achmad Wira",
     "Full Stack Developer",
-    "TypeScript",
+    "Web Developer",
     "React",
     "Next.js",
-    "Node.js",
-    "Web Developer",
-    "Indonesia",
-    "Freelance Developer",
-    "Frontend Developer",
-    "Backend Developer",
-    "Tailwind CSS",
-    "PostgreSQL",
-    "Prisma",
-    "SaaS",
-    "Portfolio",
+    "TypeScript",
+    "Web3",
+    "Blockchain",
+    "AI",
+    "Achmad Wira",
   ],
-  authors: [{ name: "Achmad Wira" }],
-  creator: "Achmad Wira",
   openGraph: {
-    title: "Achmad Wira | Full Stack Developer — React, Next.js, TypeScript",
+    title: "Achmad Wira | Full Stack Developer",
     description:
-      "Full Stack Developer from Indonesia with 7+ years experience. Building modern web apps with React, Next.js, TypeScript, Python, Firebase & Web3. Available for hire.",
-    url: "https://achmadwirra.github.io",
-    siteName: "Achmad Wira Portfolio",
-    locale: "en_US",
+      "Full Stack Developer specializing in TypeScript, React/Next.js, Python, Web3, and AI integration.",
+    images: ["/og-image.png"],
     type: "website",
-    images: [
-      {
-        url: "https://achmadwirra.github.io/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Achmad Wira - Full Stack Developer",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Achmad Wira | Full Stack Developer",
     description:
-      "Full Stack Developer from Indonesia with 7+ years experience. React, Next.js, TypeScript, Python, Web3. Available for hire.",
-    creator: "@achwir_",
-    images: ["https://achmadwirra.github.io/og-image.png"],
-  },
-  icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Achmad Wira",
-  url: "https://achmadwirra.github.io",
-  jobTitle: "Full Stack Developer",
-  description:
-    "Full Stack Developer from Indonesia specializing in React, Next.js, TypeScript, and Node.js.",
-  sameAs: [
-    "https://github.com/achmadwirra",
-    "https://www.linkedin.com/in/achmad-wira/",
-    "https://x.com/achwir_",
-  ],
-  knowsAbout: [
-    "TypeScript",
-    "React",
-    "Next.js",
-    "Node.js",
-    "PostgreSQL",
-    "MongoDB",
-    "Tailwind CSS",
-    "Prisma",
-    "REST API",
-    "Docker",
-  ],
-  nationality: {
-    "@type": "Country",
-    name: "Indonesia",
+      "Full Stack Developer specializing in TypeScript, React/Next.js, Python, Web3, and AI integration.",
+    images: ["/og-image.png"],
   },
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en" data-theme="dark" suppressHydrationWarning>
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      </head>
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={inter.variable}>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

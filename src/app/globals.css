@@ -1,19 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --accent: #8b5cf6;
-  --accent-light: #a78bfa;
-  --card-bg: rgba(255, 255, 255, 0.05);
-  --card-border: rgba(255, 255, 255, 0.1);
-}
-
-[data-theme="light"] {
-  --background: #fafafa;
-  --foreground: #171717;
-  --card-bg: rgba(0, 0, 0, 0.03);
-  --card-border: rgba(0, 0, 0, 0.1);
+  --bg-primary: #0a0f1a;
+  --bg-secondary: #0d1117;
+  --bg-card: #1a1f2e;
+  --bg-card-alt: #161b22;
+  --border-subtle: #1e293b;
+  --accent: #06b6d4;
+  --accent-light: #22d3ee;
+  --accent-glow: #00d4ff;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
 }
 
 html {
@@ -21,8 +19,8 @@ html {
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--bg-primary);
+  color: var(--text-primary);
   font-family: "Inter", system-ui, -apple-system, sans-serif;
 }
 
@@ -36,31 +34,50 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--bg-secondary);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--accent);
   border-radius: 3px;
 }
 
-/* Glass card */
-.glass {
-  background: var(--card-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--card-border);
-  border-radius: 16px;
+/* Section title */
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 0.5rem;
 }
 
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, #8b5cf6, #06b6d4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.section-subtitle {
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
-/* Glow effect */
-.glow {
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+/* Dark card */
+.dark-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.dark-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* Cyan gradient for progress bars */
+.cyan-gradient {
+  background: linear-gradient(90deg, #06b6d4, #00d4ff, #22d3ee);
+}
+
+/* Grid background pattern */
+.grid-pattern {
+  background-image: 
+    linear-gradient(rgba(6, 182, 212, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
 }

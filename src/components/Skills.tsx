@@ -1,163 +1,60 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 
-type SkillLevel = "Expert" | "Advanced" | "Intermediate" | "Beginner";
-
-interface Skill {
-  name: string;
-  level: number;
-  label: SkillLevel;
-}
-
-const levelColors: Record<SkillLevel, string> = {
-  Expert: "from-purple-500 to-cyan-500",
-  Advanced: "from-blue-500 to-cyan-500",
-  Intermediate: "from-cyan-500 to-teal-500",
-  Beginner: "from-teal-500 to-green-500",
-};
-
-const levelBadgeColors: Record<SkillLevel, string> = {
-  Expert: "bg-purple-500/20 text-purple-400",
-  Advanced: "bg-blue-500/20 text-blue-400",
-  Intermediate: "bg-cyan-500/20 text-cyan-400",
-  Beginner: "bg-teal-500/20 text-teal-400",
-};
-
-const skillCategories: { title: string; emoji: string; skills: Skill[] }[] = [
-  {
-    title: "Frontend",
-    emoji: "🎨",
-    skills: [
-      { name: "React", level: 90, label: "Expert" },
-      { name: "Next.js", level: 90, label: "Expert" },
-      { name: "TypeScript", level: 92, label: "Expert" },
-      { name: "JavaScript", level: 90, label: "Expert" },
-      { name: "Tailwind CSS", level: 88, label: "Advanced" },
-      { name: "Framer Motion", level: 80, label: "Advanced" },
-      { name: "HTML5", level: 95, label: "Expert" },
-      { name: "CSS3", level: 92, label: "Expert" },
-    ],
-  },
-  {
-    title: "Backend",
-    emoji: "⚙️",
-    skills: [
-      { name: "Node.js", level: 88, label: "Advanced" },
-      { name: "Python", level: 82, label: "Advanced" },
-      { name: "Express", level: 82, label: "Advanced" },
-      { name: "REST API", level: 88, label: "Advanced" },
-      { name: "Prisma", level: 80, label: "Advanced" },
-      { name: "PostgreSQL", level: 78, label: "Advanced" },
-      { name: "MongoDB", level: 78, label: "Advanced" },
-      { name: "Firebase / Supabase", level: 72, label: "Intermediate" },
-    ],
-  },
-  {
-    title: "DevOps & Tools",
-    emoji: "🛠️",
-    skills: [
-      { name: "Git", level: 90, label: "Expert" },
-      { name: "GitHub", level: 88, label: "Advanced" },
-      { name: "Vercel", level: 85, label: "Advanced" },
-      { name: "Docker", level: 75, label: "Advanced" },
-      { name: "CI/CD", level: 72, label: "Intermediate" },
-      { name: "Linux / VPS", level: 82, label: "Advanced" },
-    ],
-  },
-  {
-    title: "Web3 & Blockchain",
-    emoji: "⛓️",
-    skills: [
-      { name: "Cosmos SDK / Validator Nodes", level: 82, label: "Advanced" },
-      { name: "EVM Chains (Ethereum, Base, BSC)", level: 80, label: "Advanced" },
-      { name: "DeFi Protocols", level: 78, label: "Advanced" },
-      { name: "Trading & Automation Bots", level: 85, label: "Advanced" },
-      { name: "Smart Contracts (Solidity)", level: 65, label: "Intermediate" },
-      { name: "Node Infrastructure", level: 80, label: "Advanced" },
-    ],
-  },
-  {
-    title: "AI & Cloud",
-    emoji: "🧠",
-    skills: [
-      { name: "AI/LLM Integration", level: 78, label: "Advanced" },
-      { name: "Prompt Engineering", level: 82, label: "Advanced" },
-      { name: "AWS (EC2, RDP, VPS)", level: 75, label: "Advanced" },
-      { name: "Cloud Infrastructure", level: 72, label: "Intermediate" },
-      { name: "AI Model Evaluation", level: 76, label: "Advanced" },
-      { name: "Automation & Scripting", level: 85, label: "Advanced" },
-    ],
-  },
+const skills = [
+  { name: "TypeScript", level: 92 },
+  { name: "React / Next.js", level: 90 },
+  { name: "Python", level: 82 },
+  { name: "Node.js", level: 88 },
+  { name: "Tailwind CSS", level: 88 },
+  { name: "PostgreSQL", level: 78 },
+  { name: "Firebase", level: 75 },
+  { name: "Web3 / Blockchain", level: 82 },
+  { name: "AI / LLM Integration", level: 78 },
+  { name: "AWS / Cloud", level: 75 },
 ];
 
 export default function Skills() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section id="skills" className="py-24 px-6" ref={ref}>
-      <div className="max-w-6xl mx-auto">
+    <section id="skills" className="py-20 bg-[#0a0f1a]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
         >
-          <p className="text-sm uppercase tracking-widest text-[var(--accent)] mb-2">
-            Expertise
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold">
-            Tech <span className="gradient-text">Stack</span>
-          </h2>
+          <h2 className="text-3xl font-bold text-[#f8fafc] mb-3">My Skills</h2>
+          <p className="text-[#94a3b8]">Technologies I work with</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {skillCategories.map((category, ci) => (
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {skills.map((skill, index) => (
             <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: ci * 0.15 }}
-              className="glass p-6"
+              key={skill.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
             >
-              <h3 className="text-lg font-bold mb-6 text-[var(--accent)] flex items-center gap-2">
-                <span>{category.emoji}</span> {category.title}
-              </h3>
-              <div className="space-y-4">
-                {category.skills.map((skill, si) => (
-                  <div key={skill.name}>
-                    <div className="flex items-center justify-between text-sm mb-1.5">
-                      <span className="font-medium">{skill.name}</span>
-                      <span
-                        className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${
-                          levelBadgeColors[skill.label]
-                        }`}
-                      >
-                        {skill.label}
-                      </span>
-                    </div>
-                    <div className="h-2 rounded-full bg-white/5 overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={
-                          isInView
-                            ? { width: `${skill.level}%` }
-                            : { width: 0 }
-                        }
-                        transition={{
-                          duration: 1,
-                          delay: ci * 0.15 + si * 0.08,
-                          ease: "easeOut",
-                        }}
-                        className={`h-full rounded-full bg-gradient-to-r ${
-                          levelColors[skill.label]
-                        }`}
-                      />
-                    </div>
-                  </div>
-                ))}
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-[#f8fafc] text-sm font-medium">
+                  {skill.name}
+                </span>
+                <span className="text-[#06b6d4] text-sm font-semibold">
+                  {skill.level}%
+                </span>
+              </div>
+              <div className="h-2.5 bg-[#1a1f2e] rounded-full overflow-hidden border border-[#1e293b]">
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${skill.level}%` }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, delay: 0.2 + index * 0.05 }}
+                  className="h-full rounded-full cyan-gradient"
+                />
               </div>
             </motion.div>
           ))}
