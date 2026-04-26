@@ -10,22 +10,34 @@ import Projects from "@/components/Projects";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import BackToTop from "@/components/BackToTop";
+import SectionDivider from "@/components/SectionDivider";
 
 export default function Home() {
   return (
     <>
       <Navbar />
       <Hero />
+      <SectionDivider />
       <Services />
+      <SectionDivider />
       <Stats />
+      <SectionDivider />
       <About />
+      <SectionDivider />
       <Education />
+      <SectionDivider />
       <Experience />
+      <SectionDivider />
       <Skills />
+      <SectionDivider />
       <Projects />
+      <SectionDivider />
       <Testimonials />
+      <SectionDivider />
       <Contact />
       <Footer />
+      <BackToTop />
     </>
   );
 }

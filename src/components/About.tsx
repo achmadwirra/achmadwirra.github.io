@@ -30,19 +30,23 @@ export default function About() {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left - Photo/Illustration */}
+          {/* Left - Photo */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
+            className="flex justify-center"
           >
-            <div className="w-full aspect-square max-w-md mx-auto rounded-2xl bg-gradient-to-br from-[#1a1f2e] to-[#0d1117] border border-[#1e293b] flex items-center justify-center">
-              <div className="text-center">
-                <span className="text-7xl font-bold text-[#06b6d4]/20">
-                  AW
-                </span>
-                <p className="text-[#94a3b8] text-sm mt-2">Achmad Wira</p>
+            <div className="relative">
+              {/* Glow behind photo */}
+              <div className="absolute inset-0 rounded-2xl bg-[#06b6d4]/15 blur-2xl scale-110" />
+              <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-2xl border-2 border-[#06b6d4]/30 overflow-hidden shadow-[0_0_30px_rgba(6,182,212,0.1)]">
+                <img
+                  src="https://avatars.githubusercontent.com/u/33767655?v=4"
+                  alt="Achmad Wira"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </motion.div>

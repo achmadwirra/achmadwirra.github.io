@@ -16,12 +16,27 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
   font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+/* Loading fade-in */
+body {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 ::selection {
@@ -56,16 +71,17 @@ body {
   margin-bottom: 3rem;
 }
 
-/* Dark card */
+/* Dark card with glow effect */
 .dark-card {
   background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid rgba(6, 182, 212, 0.1);
   border-radius: 12px;
-  transition: border-color 0.3s ease, transform 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .dark-card:hover {
-  border-color: var(--accent);
+  border-color: rgba(6, 182, 212, 0.3);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.1);
   transform: translateY(-2px);
 }
 
@@ -80,4 +96,19 @@ body {
     linear-gradient(rgba(6, 182, 212, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(6, 182, 212, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
+}
+
+/* Section divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(6, 182, 212, 0.15) 30%,
+    rgba(6, 182, 212, 0.25) 50%,
+    rgba(6, 182, 212, 0.15) 70%,
+    transparent
+  );
+  margin: 0 auto;
+  max-width: 80%;
 }

@@ -19,6 +19,8 @@ interface Project {
   tags: string[];
   liveUrl: string;
   githubUrl: string;
+  gradient: string;
+  emoji: string;
 }
 
 const projects: Project[] = [
@@ -30,6 +32,8 @@ const projects: Project[] = [
     tags: ["Next.js", "TypeScript", "Tailwind", "Firebase"],
     liveUrl: "https://wir-forms.vercel.app",
     githubUrl: "https://github.com/achmadwira",
+    gradient: "from-violet-600 to-indigo-600",
+    emoji: "📝",
   },
   {
     title: "Wir Store",
@@ -39,6 +43,8 @@ const projects: Project[] = [
     tags: ["React", "Node.js", "PostgreSQL", "Stripe"],
     liveUrl: "https://wir-store.vercel.app",
     githubUrl: "https://github.com/achmadwira",
+    gradient: "from-amber-500 to-orange-600",
+    emoji: "🛒",
   },
   {
     title: "Wir AI",
@@ -48,6 +54,8 @@ const projects: Project[] = [
     tags: ["Next.js", "OpenRouter", "Python", "LLM"],
     liveUrl: "https://wir-ai.vercel.app",
     githubUrl: "https://github.com/achmadwira",
+    gradient: "from-purple-600 to-pink-600",
+    emoji: "🤖",
   },
   {
     title: "Wir Chat",
@@ -57,6 +65,8 @@ const projects: Project[] = [
     tags: ["React", "Firebase", "WebSocket", "TypeScript"],
     liveUrl: "https://wir-chat.vercel.app",
     githubUrl: "https://github.com/achmadwira",
+    gradient: "from-green-500 to-emerald-600",
+    emoji: "💬",
   },
   {
     title: "SaaS Dashboard",
@@ -66,6 +76,8 @@ const projects: Project[] = [
     tags: ["Next.js", "Tailwind", "Chart.js", "Prisma"],
     liveUrl: "https://saas-dashboard-cyan.vercel.app",
     githubUrl: "https://github.com/achmadwira",
+    gradient: "from-indigo-600 to-purple-600",
+    emoji: "📊",
   },
   {
     title: "Blog Platform",
@@ -75,6 +87,8 @@ const projects: Project[] = [
     tags: ["Next.js", "MDX", "Tailwind", "Vercel"],
     liveUrl: "https://blog-platform-mu-neon.vercel.app",
     githubUrl: "https://github.com/achmadwira",
+    gradient: "from-blue-500 to-cyan-500",
+    emoji: "✍️",
   },
 ];
 
@@ -135,7 +149,7 @@ export default function Projects() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {filtered.map((project, index) => (
               <motion.div
@@ -145,12 +159,21 @@ export default function Projects() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="dark-card overflow-hidden group"
               >
-                {/* Preview */}
-                <div className="h-48 bg-gradient-to-br from-[#1a1f2e] to-[#0d1117] flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#06b6d4]/5 to-transparent" />
-                  <span className="text-[#06b6d4]/30 text-2xl font-bold">
-                    {project.title}
-                  </span>
+                {/* Preview with gradient */}
+                <div className={`h-48 bg-gradient-to-br ${project.gradient} relative overflow-hidden flex items-center justify-center`}>
+                  {/* Overlay pattern */}
+                  <div className="absolute inset-0 bg-black/20" />
+                  <div className="absolute inset-0 opacity-10" style={{
+                    backgroundImage: 'radial-gradient(circle at 25% 25%, white 1px, transparent 1px)',
+                    backgroundSize: '20px 20px',
+                  }} />
+                  {/* Emoji + title overlay */}
+                  <div className="relative text-center z-10">
+                    <span className="text-5xl block mb-2">{project.emoji}</span>
+                    <span className="text-white/90 text-lg font-bold tracking-wide">
+                      {project.title}
+                    </span>
+                  </div>
                 </div>
 
                 <div className="p-5">

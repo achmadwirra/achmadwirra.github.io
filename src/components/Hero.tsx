@@ -36,6 +36,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
+            className="order-1"
           >
             <span className="text-[#06b6d4] text-sm font-semibold tracking-widest uppercase mb-4 block">
               I&apos;m Developer
@@ -95,30 +96,33 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Right side - Profile */}
+          {/* Right side - Profile Photo */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="relative flex justify-center"
+            className="relative flex justify-center order-2"
           >
             <div className="relative">
+              {/* Glow behind photo */}
+              <div className="absolute inset-0 rounded-2xl bg-[#06b6d4]/20 blur-2xl scale-110" />
+
               {/* Profile photo frame */}
-              <div className="w-72 h-72 sm:w-80 sm:h-80 rounded-2xl bg-gradient-to-br from-[#06b6d4]/20 to-[#1a1f2e] border border-[#1e293b] overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-[#1a1f2e] to-[#0d1117] flex items-center justify-center">
-                  <span className="text-6xl font-bold text-[#06b6d4]/30">
-                    AW
-                  </span>
-                </div>
+              <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-2xl border-2 border-[#06b6d4]/40 overflow-hidden shadow-[0_0_40px_rgba(6,182,212,0.15)]">
+                <img
+                  src="https://avatars.githubusercontent.com/u/33767655?v=4"
+                  alt="Achmad Wira"
+                  className="w-full h-full object-cover"
+                />
               </div>
 
               {/* Floating badges */}
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-4 -right-4 bg-[#1a1f2e] border border-[#1e293b] rounded-lg px-3 py-2 text-xs font-semibold text-[#06b6d4]"
+                className="absolute -top-4 -right-4 bg-[#1a1f2e]/90 backdrop-blur-sm border border-[#06b6d4]/30 rounded-lg px-3 py-2 text-xs font-semibold text-[#06b6d4] shadow-[0_0_15px_rgba(6,182,212,0.1)]"
               >
-                Full Stack
+                ⚡ Full Stack
               </motion.div>
               <motion.div
                 animate={{ y: [0, 8, 0] }}
@@ -128,9 +132,9 @@ export default function Hero() {
                   ease: "easeInOut",
                   delay: 1,
                 }}
-                className="absolute -bottom-4 -left-4 bg-[#1a1f2e] border border-[#1e293b] rounded-lg px-3 py-2 text-xs font-semibold text-[#22d3ee]"
+                className="absolute -bottom-4 -left-4 bg-[#1a1f2e]/90 backdrop-blur-sm border border-[#22d3ee]/30 rounded-lg px-3 py-2 text-xs font-semibold text-[#22d3ee] shadow-[0_0_15px_rgba(34,211,238,0.1)]"
               >
-                Web3
+                🔗 Web3
               </motion.div>
               <motion.div
                 animate={{ y: [0, -6, 0] }}
@@ -140,9 +144,9 @@ export default function Hero() {
                   ease: "easeInOut",
                   delay: 2,
                 }}
-                className="absolute top-1/2 -right-8 bg-[#1a1f2e] border border-[#1e293b] rounded-lg px-3 py-2 text-xs font-semibold text-[#00d4ff]"
+                className="absolute top-1/2 -translate-y-1/2 -right-12 sm:-right-14 bg-[#1a1f2e]/90 backdrop-blur-sm border border-[#00d4ff]/30 rounded-lg px-3 py-2 text-xs font-semibold text-[#00d4ff] shadow-[0_0_15px_rgba(0,212,255,0.1)]"
               >
-                AI
+                🤖 AI Developer
               </motion.div>
             </div>
           </motion.div>

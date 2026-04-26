@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
@@ -27,12 +27,36 @@ const testimonials = [
 
 export default function Testimonials() {
   const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(1);
 
-  const next = () => setCurrent((prev) => (prev + 1) % testimonials.length);
-  const prev = () =>
+  const next = useCallback(() => {
+    setDirection(1);
+    setCurrent((prev) => (prev + 1) % testimonials.length);
+  }, []);
+
+  const prev = useCallback(() => {
+    setDirection(-1);
     setCurrent(
       (prev) => (prev - 1 + testimonials.length) % testimonials.length
     );
+  }, []);
+
+  const goTo = (index: number) => {
+    setDirection(index > current ? 1 : -1);
+    setCurrent(index);
+  };
+
+  // Auto-play every 5 seconds
+  useEffect(() => {
+    const timer = setInterval(next, 5000);
+    return () => clearInterval(timer);
+  }, [next]);
+
+  const variants = {
+    enter: (dir: number) => ({ opacity: 0, x: dir > 0 ? 80 : -80 }),
+    center: { opacity: 1, x: 0 },
+    exit: (dir: number) => ({ opacity: 0, x: dir > 0 ? -80 : 80 }),
+  };
 
   return (
     <section className="py-20 bg-[#0a0f1a]">
@@ -52,83 +76,89 @@ export default function Testimonials() {
 
         <div className="max-w-3xl mx-auto">
           <div className="relative">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={current}
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.3 }}
-                className="dark-card p-8 text-center"
-              >
-                <Quote className="text-[#06b6d4]/30 mx-auto mb-4" size={40} />
+            {/* Left arrow */}
+            <button
+              onClick={prev}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 sm:-translate-x-14 z-10 w-10 h-10 rounded-full border border-[#1e293b] bg-[#1a1f2e]/80 backdrop-blur-sm flex items-center justify-center text-[#94a3b8] hover:text-[#06b6d4] hover:border-[#06b6d4] transition-colors"
+              aria-label="Previous testimonial"
+            >
+              <ChevronLeft size={18} />
+            </button>
 
-                <p className="text-[#94a3b8] text-lg leading-relaxed mb-6 italic">
-                  &ldquo;{testimonials[current].text}&rdquo;
-                </p>
+            {/* Right arrow */}
+            <button
+              onClick={next}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 sm:translate-x-14 z-10 w-10 h-10 rounded-full border border-[#1e293b] bg-[#1a1f2e]/80 backdrop-blur-sm flex items-center justify-center text-[#94a3b8] hover:text-[#06b6d4] hover:border-[#06b6d4] transition-colors"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight size={18} />
+            </button>
 
-                {/* Stars */}
-                <div className="flex justify-center gap-1 mb-4">
-                  {Array.from({ length: testimonials[current].rating }).map(
-                    (_, i) => (
-                      <Star
-                        key={i}
-                        className="text-[#06b6d4] fill-[#06b6d4]"
-                        size={18}
-                      />
-                    )
-                  )}
-                </div>
+            <div className="overflow-hidden">
+              <AnimatePresence mode="wait" custom={direction}>
+                <motion.div
+                  key={current}
+                  custom={direction}
+                  variants={variants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.35, ease: "easeInOut" }}
+                  className="dark-card p-8 text-center"
+                >
+                  <Quote className="text-[#06b6d4]/30 mx-auto mb-4" size={40} />
 
-                {/* Avatar */}
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#06b6d4] to-[#22d3ee] flex items-center justify-center mx-auto mb-3">
-                  <span className="text-[#0a0f1a] font-bold text-lg">
-                    {testimonials[current].name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </span>
-                </div>
+                  <p className="text-[#94a3b8] text-lg leading-relaxed mb-6 italic">
+                    &ldquo;{testimonials[current].text}&rdquo;
+                  </p>
 
-                <h4 className="text-[#f8fafc] font-semibold">
-                  {testimonials[current].name}
-                </h4>
-                <p className="text-[#06b6d4] text-sm">
-                  {testimonials[current].role}
-                </p>
-              </motion.div>
-            </AnimatePresence>
+                  {/* Stars */}
+                  <div className="flex justify-center gap-1 mb-4">
+                    {Array.from({ length: testimonials[current].rating }).map(
+                      (_, i) => (
+                        <Star
+                          key={i}
+                          className="text-[#06b6d4] fill-[#06b6d4]"
+                          size={18}
+                        />
+                      )
+                    )}
+                  </div>
 
-            {/* Navigation */}
-            <div className="flex justify-center items-center gap-4 mt-6">
-              <button
-                onClick={prev}
-                className="w-10 h-10 rounded-full border border-[#1e293b] flex items-center justify-center text-[#94a3b8] hover:text-[#06b6d4] hover:border-[#06b6d4] transition-colors"
-                aria-label="Previous testimonial"
-              >
-                <ChevronLeft size={18} />
-              </button>
+                  {/* Avatar */}
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#06b6d4] to-[#22d3ee] flex items-center justify-center mx-auto mb-3">
+                    <span className="text-[#0a0f1a] font-bold text-lg">
+                      {testimonials[current].name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </span>
+                  </div>
 
-              <div className="flex gap-2">
-                {testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrent(index)}
-                    className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                      index === current ? "bg-[#06b6d4]" : "bg-[#1e293b]"
-                    }`}
-                    aria-label={`Go to testimonial ${index + 1}`}
-                  />
-                ))}
-              </div>
+                  <h4 className="text-[#f8fafc] font-semibold">
+                    {testimonials[current].name}
+                  </h4>
+                  <p className="text-[#06b6d4] text-sm">
+                    {testimonials[current].role}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
-              <button
-                onClick={next}
-                className="w-10 h-10 rounded-full border border-[#1e293b] flex items-center justify-center text-[#94a3b8] hover:text-[#06b6d4] hover:border-[#06b6d4] transition-colors"
-                aria-label="Next testimonial"
-              >
-                <ChevronRight size={18} />
-              </button>
+            {/* Dots indicator */}
+            <div className="flex justify-center items-center gap-2 mt-6">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goTo(index)}
+                  className={`rounded-full transition-all duration-300 ${
+                    index === current
+                      ? "w-6 h-2.5 bg-[#06b6d4]"
+                      : "w-2.5 h-2.5 bg-[#1e293b] hover:bg-[#06b6d4]/40"
+                  }`}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
             </div>
           </div>
         </div>
