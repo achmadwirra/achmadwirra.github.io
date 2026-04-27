@@ -33,6 +33,8 @@ const contactInfo = [
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   return (
     <section id="contact" className="py-20 bg-[#0d1117]">
@@ -111,11 +113,36 @@ export default function Contact() {
               </div>
             ) : (
               <form
-                action="https://formspree.io/f/mgordpgr"
-                method="POST"
-                onSubmit={() => setSubmitted(true)}
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  setLoading(true);
+                  setError("");
+                  try {
+                    const form = e.target as HTMLFormElement;
+                    const res = await fetch("https://formspree.io/f/mgordpgr", {
+                      method: "POST",
+                      body: new FormData(form),
+                      headers: { Accept: "application/json" },
+                    });
+                    if (res.ok) {
+                      setSubmitted(true);
+                      form.reset();
+                    } else {
+                      setError("Failed to send. Please try again.");
+                    }
+                  } catch {
+                    setError("Network error. Please try again.");
+                  } finally {
+                    setLoading(false);
+                  }
+                }}
                 className="dark-card p-6 space-y-4"
               >
+                {error && (
+                  <div className="bg-red-500/10 border border-red-500/30 text-red-400 px-4 py-2 rounded-lg text-sm">
+                    {error}
+                  </div>
+                )}
                 <div>
                   <input
                     type="text"
@@ -154,9 +181,10 @@ export default function Contact() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-[#06b6d4] hover:bg-[#22d3ee] text-[#0a0f1a] py-3 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
+                  disabled={loading}
+                  className="w-full bg-[#06b6d4] hover:bg-[#22d3ee] disabled:opacity-50 disabled:cursor-not-allowed text-[#0a0f1a] py-3 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
                 >
-                  Send Message <Send size={16} />
+                  {loading ? "Sending..." : <>Send Message <Send size={16} /></>}
                 </button>
               </form>
             )}
