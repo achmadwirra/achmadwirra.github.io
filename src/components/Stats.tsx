@@ -2,12 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Clock, FolderOpen, Users, Cpu } from "lucide-react";
+import { Clock, FolderOpen, Coffee, Cpu } from "lucide-react";
 
 const stats = [
   { icon: Clock, value: 7, suffix: "+", label: "Years Experience" },
   { icon: FolderOpen, value: 12, suffix: "+", label: "Projects Complete" },
-  { icon: Users, value: 50, suffix: "+", label: "Happy Clients" },
+  { icon: Coffee, value: 5000, suffix: "+", label: "Cups of Coffee" },
   { icon: Cpu, value: 35, suffix: "+", label: "Technologies" },
 ];
 
