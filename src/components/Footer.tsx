@@ -29,13 +29,13 @@ const quickLinks = [
 ];
 
 const socialLinks = [
-  { icon: GithubIcon, href: "https://github.com/achmadwira", label: "GitHub" },
+  { icon: GithubIcon, href: "https://github.com/achmadwirra", label: "GitHub" },
   {
     icon: LinkedinIcon,
-    href: "https://linkedin.com/in/achmadwira",
+    href: "https://www.linkedin.com/in/achmad-wira/",
     label: "LinkedIn",
   },
-  { icon: XIcon, href: "https://x.com/fekzsya", label: "X/Twitter" },
+  { icon: XIcon, href: "https://x.com/achwir_", label: "X/Twitter" },
 ];
 
 export default function Footer() {

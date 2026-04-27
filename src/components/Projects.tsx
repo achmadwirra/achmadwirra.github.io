@@ -31,7 +31,7 @@ const projects: Project[] = [
     category: ["web", "fullstack"],
     tags: ["Next.js", "TypeScript", "Tailwind", "Firebase"],
     liveUrl: "https://wir-forms.vercel.app",
-    githubUrl: "https://github.com/achmadwira",
+    githubUrl: "https://github.com/achmadwirra",
     gradient: "from-violet-600 to-indigo-600",
     emoji: "📝",
   },
@@ -42,7 +42,7 @@ const projects: Project[] = [
     category: ["web", "fullstack"],
     tags: ["React", "Node.js", "PostgreSQL", "Stripe"],
     liveUrl: "https://wir-store.vercel.app",
-    githubUrl: "https://github.com/achmadwira",
+    githubUrl: "https://github.com/achmadwirra",
     gradient: "from-amber-500 to-orange-600",
     emoji: "🛒",
   },
@@ -53,7 +53,7 @@ const projects: Project[] = [
     category: ["ai", "fullstack"],
     tags: ["Next.js", "OpenRouter", "Python", "LLM"],
     liveUrl: "https://wir-ai.vercel.app",
-    githubUrl: "https://github.com/achmadwira",
+    githubUrl: "https://github.com/achmadwirra",
     gradient: "from-purple-600 to-pink-600",
     emoji: "🤖",
   },
@@ -64,7 +64,7 @@ const projects: Project[] = [
     category: ["web", "fullstack"],
     tags: ["React", "Firebase", "WebSocket", "TypeScript"],
     liveUrl: "https://wir-chat.vercel.app",
-    githubUrl: "https://github.com/achmadwira",
+    githubUrl: "https://github.com/achmadwirra",
     gradient: "from-green-500 to-emerald-600",
     emoji: "💬",
   },
@@ -75,7 +75,7 @@ const projects: Project[] = [
     category: ["web", "fullstack"],
     tags: ["Next.js", "Tailwind", "Chart.js", "Prisma"],
     liveUrl: "https://saas-dashboard-cyan.vercel.app",
-    githubUrl: "https://github.com/achmadwira",
+    githubUrl: "https://github.com/achmadwirra",
     gradient: "from-indigo-600 to-purple-600",
     emoji: "📊",
   },
@@ -86,7 +86,7 @@ const projects: Project[] = [
     category: ["web", "fullstack"],
     tags: ["Next.js", "MDX", "Tailwind", "Vercel"],
     liveUrl: "https://blog-platform-mu-neon.vercel.app",
-    githubUrl: "https://github.com/achmadwira",
+    githubUrl: "https://github.com/achmadwirra",
     gradient: "from-blue-500 to-cyan-500",
     emoji: "✍️",
   },
@@ -229,7 +229,7 @@ export default function Projects() {
           className="text-center mt-10"
         >
           <a
-            href="https://github.com/achmadwira"
+            href="https://github.com/achmadwirra"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 border border-[#1e293b] hover:border-[#06b6d4] text-[#94a3b8] hover:text-[#06b6d4] px-6 py-3 rounded-full text-sm font-medium transition-colors"

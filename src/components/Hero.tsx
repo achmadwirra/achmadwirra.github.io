@@ -70,7 +70,7 @@ export default function Hero() {
 
             <div className="flex items-center gap-4">
               <a
-                href="https://github.com/achmadwira"
+                href="https://github.com/achmadwirra"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full border border-[#1e293b] flex items-center justify-center text-[#94a3b8] hover:text-[#06b6d4] hover:border-[#06b6d4] transition-colors"
@@ -78,7 +78,7 @@ export default function Hero() {
                 <GithubIcon />
               </a>
               <a
-                href="https://linkedin.com/in/achmadwira"
+                href="https://www.linkedin.com/in/achmad-wira/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full border border-[#1e293b] flex items-center justify-center text-[#94a3b8] hover:text-[#06b6d4] hover:border-[#06b6d4] transition-colors"
@@ -86,7 +86,7 @@ export default function Hero() {
                 <LinkedinIcon />
               </a>
               <a
-                href="https://x.com/fekzsya"
+                href="https://x.com/achwir_"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full border border-[#1e293b] flex items-center justify-center text-[#94a3b8] hover:text-[#06b6d4] hover:border-[#06b6d4] transition-colors"
