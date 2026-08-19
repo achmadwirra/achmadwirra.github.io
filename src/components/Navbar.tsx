@@ -92,12 +92,7 @@ export default function Navbar() {
                 <a
                   key={link.name}
                   href={link.href}
-                  onClick={(e) => {
-                    setIsOpen(false);
-                    e.preventDefault();
-                    const target = document.querySelector(link.href);
-                    if (target) target.scrollIntoView({ behavior: "smooth" });
-                  }}
+                  onClick={() => setIsOpen(false)}
                   className="block rounded-lg px-3 py-2.5 text-sm font-medium text-[#9ba1ac] transition-colors hover:bg-white/[0.04] hover:text-[#f4f5f7]"
                 >
                   {link.name}
