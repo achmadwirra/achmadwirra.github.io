@@ -92,7 +92,17 @@ export default function Navbar() {
                 <a
                   key={link.name}
                   href={link.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const id = link.href.split("#")[1] || "";
+                    setIsOpen(false);
+                    // Wait for the collapse animation to finish so the
+                    // target's position is stable before scrolling.
+                    setTimeout(() => {
+                      const el = document.getElementById(id);
+                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                    }, 350);
+                  }}
                   className="block rounded-lg px-3 py-2.5 text-sm font-medium text-[#9ba1ac] transition-colors hover:bg-white/[0.04] hover:text-[#f4f5f7]"
                 >
                   {link.name}
@@ -100,7 +110,14 @@ export default function Navbar() {
               ))}
               <a
                 href="#contact"
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsOpen(false);
+                  setTimeout(() => {
+                    const el = document.getElementById("contact");
+                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                  }, 350);
+                }}
                 className="mt-3 flex items-center justify-center gap-1.5 rounded-full bg-[#f4f5f7] px-4 py-2.5 text-sm font-semibold text-[#0a0b0d]"
               >
                 Hire me
