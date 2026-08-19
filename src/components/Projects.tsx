@@ -12,7 +12,7 @@ const GithubIcon = () => (
 );
 
 type Category = "all" | "web" | "ai" | "web3" | "fullstack";
-type PreviewKind = "forms" | "store" | "ai" | "chat" | "dashboard" | "blog";
+type PreviewKind = "forms" | "store" | "ai" | "chat" | "dashboard" | "blog" | "qris" | "license";
 
 interface Project {
   title: string;
@@ -26,6 +26,28 @@ interface Project {
 }
 
 const projects: Project[] = [
+  {
+    title: "FekzCloud AI Store",
+    domain: "ai.fekzcloud.com",
+    description:
+      "AI API token storefront with QRIS checkout, automatic license-key delivery, and admin model management — live production store.",
+    category: ["ai", "fullstack"],
+    tags: ["Next.js", "Prisma", "QRIS", "Auth"],
+    liveUrl: "https://ai.fekzcloud.com",
+    githubUrl: "https://github.com/achmadwirra",
+    preview: "qris",
+  },
+  {
+    title: "WIR Store",
+    domain: "store.fekzcloud.com",
+    description:
+      "Digital product storefront with multi-provider payment verification (QRIS, Midtrans, Saweria), AES-256 protected downloads, and Ed25519-signed license guard.",
+    category: ["web", "fullstack"],
+    tags: ["Next.js", "Prisma", "QRIS", "Midtrans"],
+    liveUrl: "https://store.fekzcloud.com",
+    githubUrl: "https://github.com/achmadwirra",
+    preview: "license",
+  },
   {
     title: "Wir Forms",
     domain: "wir-forms.vercel.app",
@@ -108,6 +130,70 @@ function PreviewArt({ kind }: { kind: PreviewKind }) {
   const block = "rounded-md bg-white/[0.05] border border-white/[0.06]";
 
   switch (kind) {
+    case "qris":
+      return (
+        <div className="flex h-full items-center justify-center gap-6 px-8">
+          {/* QR code */}
+          <div className="grid shrink-0 grid-cols-3 gap-[3px] rounded-lg border border-white/[0.08] bg-white/[0.04] p-2.5">
+            {[
+              1, 0, 1, 0, 1, 1, 1, 0, 1,
+              0, 1, 0, 0, 0, 0, 0, 1, 0,
+              1, 0, 1, 1, 0, 1, 1, 0, 1,
+              0, 0, 1, 0, 1, 0, 1, 0, 0,
+              1, 1, 0, 1, 1, 1, 0, 1, 1,
+              0, 1, 1, 0, 0, 1, 0, 0, 1,
+              1, 0, 1, 1, 1, 0, 1, 1, 0,
+              0, 0, 0, 1, 0, 1, 0, 0, 1,
+              1, 1, 1, 0, 1, 1, 0, 1, 1,
+            ].map((v, i) => (
+              <span
+                key={i}
+                className={`h-[7px] w-[7px] rounded-[1px] ${
+                  v ? "bg-[#5eead4]/80" : "bg-white/[0.06]"
+                }`}
+              />
+            ))}
+          </div>
+          {/* Checkout summary */}
+          <div className="flex min-w-0 flex-1 flex-col gap-2">
+            <div className={`${line} h-1.5 w-14`} />
+            <div className="h-8 rounded-md bg-[#818cf8]/25" />
+            <div className="flex items-center justify-between">
+              <div className={`${line} h-1.5 w-12`} />
+              <div className="h-5 w-14 rounded-md bg-[#5eead4]/60" />
+            </div>
+            <div className={`${block} px-2.5 py-1.5`}>
+              <div className={`${line} h-1 w-3/4`} />
+              <div className={`${line} mt-1 h-1 w-1/2 opacity-60`} />
+            </div>
+          </div>
+        </div>
+      );
+    case "license":
+      return (
+        <div className="flex h-full flex-col justify-center gap-2.5 px-8">
+          <div className={`${line} h-1.5 w-16`} />
+          <div className={`${block} flex items-center justify-between gap-3 p-3`}>
+            <div className="min-w-0">
+              <div className={`${line} h-1.5 w-24`} />
+              <div className={`${line} mt-1.5 h-1 w-16 opacity-60`} />
+            </div>
+            <div className="h-6 w-16 shrink-0 rounded-md bg-[#5eead4]/50" />
+          </div>
+          <div className={`${block} flex items-center gap-3 p-3`}>
+            <span className="h-6 w-6 shrink-0 rounded-full bg-[#818cf8]/40" />
+            <div className="min-w-0 flex-1">
+              <div className={`${line} h-1.5 w-3/4`} />
+              <div className={`${line} mt-1.5 h-1 w-1/2 opacity-60`} />
+            </div>
+            <span className={`${line} h-1.5 w-8`} />
+          </div>
+          <div className="mt-1 flex items-center justify-between rounded-md border border-[#5eead4]/20 bg-[#5eead4]/[0.06] px-3 py-2">
+            <div className={`${line} h-1.5 w-20`} />
+            <span className="h-4 w-4 rounded-full bg-[#5eead4]/70" />
+          </div>
+        </div>
+      );
     case "forms":
       return (
         <div className="flex h-full flex-col justify-center gap-2.5 px-8">
