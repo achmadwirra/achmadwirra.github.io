@@ -12,7 +12,7 @@ const GithubIcon = () => (
 );
 
 type Category = "all" | "web" | "ai" | "web3" | "fullstack";
-type PreviewKind = "forms" | "store" | "ai" | "chat" | "dashboard" | "blog" | "qris" | "license";
+type PreviewKind = "forms" | "ai" | "chat" | "dashboard" | "blog" | "qris" | "license";
 
 interface Project {
   title: string;
@@ -58,17 +58,6 @@ const projects: Project[] = [
     liveUrl: "https://wir-forms.vercel.app",
     githubUrl: "https://github.com/achmadwirra",
     preview: "forms",
-  },
-  {
-    title: "Wir Store",
-    domain: "wir-store.vercel.app",
-    description:
-      "Full-featured e-commerce platform with cart, checkout, payment integration, and admin dashboard.",
-    category: ["web", "fullstack"],
-    tags: ["React", "Node.js", "PostgreSQL", "Stripe"],
-    liveUrl: "https://wir-store.vercel.app",
-    githubUrl: "https://github.com/achmadwirra",
-    preview: "store",
   },
   {
     title: "Wir AI",
@@ -202,22 +191,6 @@ function PreviewArt({ kind }: { kind: PreviewKind }) {
           <div className={`${line} mt-1.5 h-1.5 w-24`} />
           <div className={`${block} h-7 w-full`} />
           <div className="mt-2 h-7 w-24 rounded-md bg-[#818cf8]/70" />
-        </div>
-      );
-    case "store":
-      return (
-        <div className="grid h-full grid-cols-3 content-center gap-2.5 px-8">
-          {[0, 1, 2].map((i) => (
-            <div key={i} className={`${block} flex flex-col gap-1.5 p-2`}>
-              <div className="h-10 rounded bg-white/[0.07]" />
-              <div className={`${line} h-1 w-3/4`} />
-              <div className="h-1 w-1/2 rounded-full bg-[#5eead4]/60" />
-            </div>
-          ))}
-          <div className="col-span-3 mt-1 flex items-center justify-between">
-            <div className={`${line} h-1.5 w-20`} />
-            <div className="h-6 w-16 rounded-md bg-[#818cf8]/70" />
-          </div>
         </div>
       );
     case "ai":
